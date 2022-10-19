@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/font_default.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/Levels/Menus/Options.gd" type="Script" id=2]
+
+[node name="Options" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = -14.0
+margin_right = 3.0
+margin_bottom = -14.0
+script = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -597.0
+margin_right = 597.0
+margin_bottom = 553.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Zero
+Settings"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 13.0
+margin_top = -68.0
+margin_right = 84.0
+
+[node name="Start" type="Button" parent="VBoxContainer2"]
+margin_right = 71.0
+margin_bottom = 20.0
+text = "START"
+
+[node name="Options" type="Button" parent="VBoxContainer2"]
+margin_top = 24.0
+margin_right = 71.0
+margin_bottom = 44.0
+text = "OPTIONS"
+
+[node name="Exit" type="Button" parent="VBoxContainer2"]
+margin_top = 48.0
+margin_right = 71.0
+margin_bottom = 68.0
+text = "EXIT"
+
+[connection signal="pressed" from="VBoxContainer2/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="VBoxContainer2/Exit" to="." method="_on_Exit_pressed"]
