@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/actors/enemy.gd" type="Script" id=1]
+[ext_resource path="res://assets/enemy.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 48, 34 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 48, 10 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 9, 10 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 9, 10 )
+
+[node name="enemy" type="KinematicBody2D"]
+position = Vector2( 401, 136 )
+collision_mask = 8
+script = ExtResource( 1 )
+speed = Vector2( 500, 1500 )
+
+[node name="enemy" type="Sprite" parent="."]
+position = Vector2( 0, -48 )
+texture = ExtResource( 2 )
+
+[node name="Enemy" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -35 )
+shape = SubResource( 1 )
+
+[node name="StompDetector" type="Area2D" parent="."]
+modulate = Color( 0.133333, 0.0627451, 0.760784, 1 )
+position = Vector2( 0, -93 )
+collision_layer = 2
+
+[node name="stomp" type="CollisionShape2D" parent="StompDetector"]
+position = Vector2( 0, 14 )
+shape = SubResource( 2 )
+
+[node name="floorLeft" type="Area2D" parent="."]
+position = Vector2( -38, 10 )
+collision_layer = 2
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floorLeft"]
+shape = SubResource( 3 )
+
+[node name="floorRight" type="Area2D" parent="."]
+position = Vector2( 37, 10 )
+collision_layer = 2
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floorRight"]
+shape = SubResource( 4 )
+
+[connection signal="body_entered" from="StompDetector" to="." method="_on_StompDetector_body_entered"]
+[connection signal="body_exited" from="floorLeft" to="." method="_on_floorLeft_body_exited"]
+[connection signal="body_exited" from="floorRight" to="." method="_on_floorRight_body_exited"]

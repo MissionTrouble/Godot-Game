@@ -1,0 +1,15 @@
+{
+	"events": [
+		{
+			"character": "character-1664481414.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Hold Jump while on a wall to climb it."
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1664552395.json",
+		"name": "Sign-WallClimb"
+	}
+}
