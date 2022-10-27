@@ -17,4 +17,6 @@ func teleport() -> void:
 
 
 func _on_body_entered(body):
+	Main.coins += Main.tempCoins
+	Main.tempCoins = 0
 	teleport()

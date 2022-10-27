@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/actors/player.tscn" type="PackedScene" id=2]
@@ -9,9 +9,11 @@
 [ext_resource path="res://src/Levels/Background.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Levels/level2.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/Levels/Menus/HUD.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Levels/level1.gd" type="Script" id=10]
 
 [node name="level1" type="Node2D"]
 position = Vector2( 0, -20 )
+script = ExtResource( 10 )
 
 [node name="camera" type="Camera2D" parent="."]
 position = Vector2( 937, 612 )
@@ -125,6 +127,9 @@ next_scene = ExtResource( 8 )
 
 [node name="Coin" parent="Coins" instance=ExtResource( 6 )]
 position = Vector2( 916, 376 )
+
+[node name="Coin12" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( -7410, -936 )
 
 [node name="Coin2" parent="Coins" instance=ExtResource( 6 )]
 position = Vector2( 1820, -168 )

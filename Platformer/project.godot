@@ -84,6 +84,10 @@ config/name="GameTest"
 run/main_scene="res://src/Levels/Menus/Menu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Main="*res://src/Levels/Main.gd"
+
 [display]
 
 window/size/width=1300

@@ -10,17 +10,16 @@ var e: = 0.0
 var double_jump_used: = false
 var released_jump = false
 var scene
-var coins
-var level_parameters := {
-	"deaths":0
-}
-func load_level(new_level_parameters: Dictionary):
-	level_parameters = new_level_parameters
 
 func _ready():
-		get_parent().get_node("HUD/HUD").death(level_parameters.deaths)
-func _physics_process(delta: float) -> void:
+	Main.tempCoins = 0
 	scene = get_tree().get_current_scene().get_name()
+
+func _physics_process(delta: float) -> void:
+	get_parent().get_node("HUD/HUD").death(Main.deaths)
+	get_parent().get_node("HUD/HUD").coins(Main.coins+Main.tempCoins)
+	get_parent().get_node("HUD/HUD").time(stepify(Main.time,0.1))
+	
 	var direction: = get_direction()
 	
 	if(direction.y == -1):
@@ -49,9 +48,9 @@ func _physics_process(delta: float) -> void:
 	
 	if(move_and_slide(velocity) != Vector2.ZERO):
 		velocity = move_and_slide(velocity)
+		
 	if(global_position.y > 2000):
-		level_parameters.deaths += 1
-#		transfer_data(scene,get_parent().get_node("Portal").get(next_scene))
+		Main.deaths += 1
 		get_tree().change_scene("res://src/Levels/"+scene+".tscn")
 
 
@@ -101,16 +100,11 @@ func on_roof() -> bool:
 			roof = true
 	return roof
 
-func transfer_data(old_scene,new_scene):
-	
-	pass
-
-
-
 func _on_EnemyDetector_body_entered(_body):
-	level_parameters.deaths += 1
+	Main.deaths += 1
 	get_tree().change_scene("res://src/Levels/"+scene+".tscn")
-	
+
+
 func calculate_stomp_velocity(linear_velocity: Vector2, impulse: float)->Vector2:
 		var out = linear_velocity
 		double_jump_used = false
@@ -122,7 +116,3 @@ func _on_StompDetector_area_entered(area):
 	if(area.name == "StompDetector"):
 		velocity = calculate_stomp_velocity(velocity, stomp_impulse)
 
-
-#func _on_Coins_child_exiting_tree(node):
-#	coins = coins + 1;
-#	print(coins)

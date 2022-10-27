@@ -1,16 +1,11 @@
 extends CanvasLayer
 
-signal start_game
-var score = 0;
+#signal start_game
 
-func increase_score(Max):
-	score += 1;
-	$Coins.text = str("Coins:" + str(score))
-
-func update_score(Max):
-	score = 0;
-	$Coins.text = str("Coins:" + str(score))
 
 func death(deaths):
-	print("deaths:" +str(deaths))
 	$Deaths.text = str("Deaths:" + str(deaths))
+func coins(coins):
+	$Coins.text = str("Coins:" + str(coins))
+func time(time):
+	$Timer.text = str("Time:" + str(time))

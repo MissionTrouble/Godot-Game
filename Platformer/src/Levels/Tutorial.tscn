@@ -92,6 +92,6 @@ next_scene = ExtResource( 8 )
 [node name="Coins" type="Node" parent="."]
 
 [node name="Coin" parent="Coins" instance=ExtResource( 16 )]
-position = Vector2( 1376, -144 )
+position = Vector2( 1384, -136 )
 
 [node name="HUD" parent="." instance=ExtResource( 17 )]
