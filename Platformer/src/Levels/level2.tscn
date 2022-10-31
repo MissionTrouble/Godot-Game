@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/actors/player.tscn" type="PackedScene" id=2]
@@ -9,18 +9,10 @@
 [ext_resource path="res://src/Levels/Background.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Levels/Menus/HUD.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/Levels/level2.gd" type="Script" id=9]
+[ext_resource path="res://src/Levels/level3.tscn" type="PackedScene" id=10]
 
 [node name="level2" type="Node2D"]
 script = ExtResource( 9 )
-
-[node name="camera" type="Camera2D" parent="."]
-position = Vector2( 937, 612 )
-limit_left = -240
-limit_bottom = 1200
-limit_smoothed = true
-smoothing_enabled = true
-smoothing_speed = 3.0
-script = ExtResource( 3 )
 
 [node name="Level 2" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -161,9 +153,21 @@ rotation = 0.0263654
 
 [node name="Portal" parent="." instance=ExtResource( 5 )]
 position = Vector2( 192, -784 )
+next_scene = ExtResource( 10 )
 
 [node name="HUD" parent="." instance=ExtResource( 8 )]
 margin_left = 822.0
 margin_top = 515.0
 margin_right = 822.0
 margin_bottom = 515.0
+
+[node name="camera" type="Camera2D" parent="."]
+position = Vector2( 1018, 572 )
+limit_left = 25
+limit_top = -1032
+limit_right = 2160
+limit_bottom = 1080
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 3.0
+script = ExtResource( 3 )

@@ -14,5 +14,6 @@ var l2 = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	Engine.time_scale = 1
 	time +=delta
 	pass

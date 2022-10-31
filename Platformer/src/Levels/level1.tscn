@@ -15,13 +15,6 @@
 position = Vector2( 0, -20 )
 script = ExtResource( 10 )
 
-[node name="camera" type="Camera2D" parent="."]
-position = Vector2( 937, 612 )
-limit_smoothed = true
-smoothing_enabled = true
-smoothing_speed = 3.0
-script = ExtResource( 3 )
-
 [node name="Level 1" type="TileMap" parent="."]
 z_index = -5
 tile_set = ExtResource( 1 )
@@ -48,7 +41,7 @@ jumpForce = 250
 wallSpeed = 100
 
 [node name="enemy2" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 1343, 236 )
+position = Vector2( 1449, 221 )
 collision_layer = 2
 collision_mask = 9
 speed = Vector2( 300, 1500 )
@@ -166,5 +159,16 @@ margin_left = 86.0
 margin_top = 165.0
 margin_right = 86.0
 margin_bottom = 165.0
+
+[node name="camera" type="Camera2D" parent="."]
+position = Vector2( 1018, 572 )
+limit_left = 25
+limit_top = -2478
+limit_right = 3588
+limit_bottom = 1080
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 3.0
+script = ExtResource( 3 )
 
 [connection signal="child_exiting_tree" from="Coins" to="player" method="_on_Coins_child_exiting_tree"]

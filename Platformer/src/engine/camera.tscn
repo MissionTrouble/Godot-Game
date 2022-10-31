@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/engine/camera.gd" type="Script" id=1]
+
+[node name="camera" type="Camera2D"]
+limit_left = 25
+limit_bottom = 1080
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 3.0
+script = ExtResource( 1 )
