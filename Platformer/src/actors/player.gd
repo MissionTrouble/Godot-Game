@@ -57,8 +57,9 @@ func _physics_process(delta: float) -> void:
 func get_direction() -> Vector2:
 	if(Input.is_action_pressed("open_menu")):
 		get_tree().change_scene("res://src/Levels/Menus/Menu.tscn")
-#	if(Input.is_action_pressed("options")):
-#		get_tree().change_scene("res://src/Levels/Menus/Options.tscn")
+	if(Input.is_action_just_pressed("options")):
+		add_child(get_node("res://src/Levels/Menus/Options.tscn"))
+		print("s")
 	var x: = (Input.get_action_strength("move_right")
 		-Input.get_action_strength("move_left"))
 	var y: = 1

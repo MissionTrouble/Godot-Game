@@ -16,10 +16,14 @@ func _ready():
 
 
 func _on_Exit_pressed():
-	get_tree().change_scene("res://src/Levels/Menus/Menu.tscn")
 	pass # Replace with function body.
 
 
 func _on_Start_pressed():
 	get_tree().change_scene("res://src/Levels/Tutorial.tscn")
+	pass # Replace with function body.
+
+
+func _on_CheckBox_toggled(button_pressed):
+	Settings.TIMER = button_pressed
 	pass # Replace with function body.

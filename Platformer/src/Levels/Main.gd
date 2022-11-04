@@ -8,6 +8,7 @@ var time = 0
 var tut = 0
 var l1 = 0
 var l2 = 0
+var lastScene
 
 # Called when the node enters the scene tree for the first time.
 

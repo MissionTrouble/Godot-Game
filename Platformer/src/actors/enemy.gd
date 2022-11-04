@@ -16,7 +16,7 @@ func _physics_process(delta):
 		velocity.x = speed.x
 	if(velocity.y < speed.y):
 		velocity.y += gravity*delta
-		pass
+		
 	move_and_slide(velocity)
 	
 
