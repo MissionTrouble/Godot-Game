@@ -1,8 +1,9 @@
 extends Node
 
 
-var TIMER
-
+var TIMER = true;
+var COINS = true;
+var DEATHS = true;
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

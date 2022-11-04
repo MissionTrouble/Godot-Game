@@ -10,6 +10,7 @@ var e: = 0.0
 var double_jump_used: = false
 var released_jump = false
 var scene
+var optionsVisible = false
 
 func _ready():
 	Main.tempCoins = 0
@@ -55,11 +56,18 @@ func _physics_process(delta: float) -> void:
 
 
 func get_direction() -> Vector2:
+	print(Engine.time_scale)
 	if(Input.is_action_pressed("open_menu")):
 		get_tree().change_scene("res://src/Levels/Menus/Menu.tscn")
 	if(Input.is_action_just_pressed("options")):
-		add_child(get_node("res://src/Levels/Menus/Options.tscn"))
-		print("s")
+		if(!optionsVisible):
+			get_parent().get_node("Options").show()
+			Engine.time_scale = 0
+			optionsVisible = true
+		else:
+			get_parent().get_node("Options").hide()
+			Engine.time_scale = 1
+			optionsVisible = false
 	var x: = (Input.get_action_strength("move_right")
 		-Input.get_action_strength("move_left"))
 	var y: = 1

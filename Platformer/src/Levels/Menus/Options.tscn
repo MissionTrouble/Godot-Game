@@ -2,7 +2,8 @@
 
 [ext_resource path="res://src/Levels/Menus/Options.gd" type="Script" id=2]
 
-[node name="Options" type="Control"]
+[node name="Options" type="Popup"]
+visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 3.0
@@ -11,61 +12,79 @@ margin_right = 3.0
 margin_bottom = -14.0
 script = ExtResource( 2 )
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
-anchor_top = 1.0
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[node name="TabContainer" type="TabContainer" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+tab_align = 0
+
+[node name="Gameplay" type="Tabs" parent="TabContainer"]
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 13.0
-margin_top = -68.0
-margin_right = 84.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+tab_align = 0
 
-[node name="Start" type="Button" parent="VBoxContainer2"]
-margin_right = 71.0
-margin_bottom = 20.0
-text = "START"
-
-[node name="Options" type="Button" parent="VBoxContainer2"]
-margin_top = 24.0
-margin_right = 71.0
-margin_bottom = 44.0
-text = "OPTIONS"
-
-[node name="Exit" type="Button" parent="VBoxContainer2"]
-margin_top = 48.0
-margin_right = 71.0
-margin_bottom = 68.0
-text = "EXIT"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_left = 0.14
-anchor_top = 0.238
-anchor_right = 0.14
-anchor_bottom = 0.238
-margin_top = -20.0
-margin_right = 130.0
-margin_bottom = 20.0
-
-[node name="CheckBox" type="CheckBox" parent="VBoxContainer"]
-margin_right = 130.0
-margin_bottom = 24.0
-text = "TIMER ENABLED"
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-anchor_left = 0.123958
-anchor_top = 0.162963
-anchor_right = 0.894825
-anchor_bottom = 0.803704
-margin_right = -0.0639648
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Popup" type="Popup" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Gameplay"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[connection signal="pressed" from="VBoxContainer2/Start" to="." method="_on_Start_pressed"]
-[connection signal="pressed" from="VBoxContainer2/Exit" to="." method="_on_Exit_pressed"]
-[connection signal="toggled" from="VBoxContainer/CheckBox" to="." method="_on_CheckBox_toggled"]
+[node name="GridContainer" type="GridContainer" parent="TabContainer/Gameplay/MarginContainer"]
+margin_right = 251.0
+margin_bottom = 128.0
+columns = 2
+
+[node name="TIMER LABEL" type="Label" parent="TabContainer/Gameplay/MarginContainer/GridContainer"]
+margin_top = 13.0
+margin_right = 171.0
+margin_bottom = 27.0
+text = "TIMER LABEL ENABLED"
+
+[node name="CheckButton" type="CheckButton" parent="TabContainer/Gameplay/MarginContainer/GridContainer"]
+margin_left = 175.0
+margin_right = 251.0
+margin_bottom = 40.0
+pressed = true
+align = 2
+icon_align = 2
+
+[node name="COIN LABEL" type="Label" parent="TabContainer/Gameplay/MarginContainer/GridContainer"]
+margin_top = 57.0
+margin_right = 171.0
+margin_bottom = 71.0
+text = "COIN LABEL ENABLED"
+
+[node name="CheckButton2" type="CheckButton" parent="TabContainer/Gameplay/MarginContainer/GridContainer"]
+margin_left = 175.0
+margin_top = 44.0
+margin_right = 251.0
+margin_bottom = 84.0
+pressed = true
+align = 2
+icon_align = 2
+
+[node name="DEATH COUNTER" type="Label" parent="TabContainer/Gameplay/MarginContainer/GridContainer"]
+margin_top = 101.0
+margin_right = 171.0
+margin_bottom = 115.0
+text = "DEATH COUNTER ENABLED"
+
+[node name="CheckButton3" type="CheckButton" parent="TabContainer/Gameplay/MarginContainer/GridContainer"]
+margin_left = 175.0
+margin_top = 88.0
+margin_right = 251.0
+margin_bottom = 128.0
+pressed = true
+align = 2
+icon_align = 2
+
+[connection signal="toggled" from="TabContainer/Gameplay/MarginContainer/GridContainer/CheckButton" to="." method="_on_CheckButton_toggled"]
+[connection signal="toggled" from="TabContainer/Gameplay/MarginContainer/GridContainer/CheckButton2" to="." method="_on_CheckButton_toggled"]
+[connection signal="toggled" from="TabContainer/Gameplay/MarginContainer/GridContainer/CheckButton2" to="." method="_on_CheckButton2_toggled"]
+[connection signal="toggled" from="TabContainer/Gameplay/MarginContainer/GridContainer/CheckButton3" to="." method="_on_CheckButton_toggled"]
+[connection signal="toggled" from="TabContainer/Gameplay/MarginContainer/GridContainer/CheckButton3" to="." method="_on_CheckButton3_toggled"]

@@ -4,8 +4,18 @@ extends CanvasLayer
 
 
 func death(deaths):
-	$Deaths.text = str("Deaths:" + str(deaths))
+	if(Settings.DEATHS):
+		$Deaths.text = str("Deaths:" + str(deaths))
+	else:
+		$Deaths.text = str("")
 func coins(coins):
-	$Coins.text = str("Coins:" + str(coins))
+	if(Settings.COINS):
+		$Coins.text = str("Coins:" + str(coins))
+	else:
+		$Coins.text = str("")
+
 func time(time):
-	$Timer.text = str("Time:" + str(time))
+	if(Settings.TIMER):
+		$Timer.text = str("Time:" + str(time))
+	else:
+		$Timer.text = str("")
