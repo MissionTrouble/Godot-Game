@@ -3,6 +3,7 @@
 [ext_resource path="res://src/Levels/Menus/Options.gd" type="Script" id=2]
 
 [node name="Options" type="Popup"]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -23,6 +24,7 @@ margin_bottom = 800.0
 tab_align = 0
 
 [node name="Gameplay" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -50,7 +52,6 @@ text = "TIMER LABEL ENABLED"
 margin_left = 175.0
 margin_right = 251.0
 margin_bottom = 40.0
-pressed = true
 align = 2
 icon_align = 2
 
@@ -84,6 +85,32 @@ pressed = true
 align = 2
 icon_align = 2
 
+[node name="SAVE" type="Tabs" parent="TabContainer"]
+margin_left = 4.0
+margin_top = 32.0
+margin_right = 1596.0
+margin_bottom = 796.0
+tab_align = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/SAVE"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/SAVE/MarginContainer"]
+margin_right = 83.0
+margin_bottom = 44.0
+
+[node name="Save" type="Button" parent="TabContainer/SAVE/MarginContainer/GridContainer"]
+margin_right = 83.0
+margin_bottom = 20.0
+text = "SAVE"
+
+[node name="DeleteSave" type="Button" parent="TabContainer/SAVE/MarginContainer/GridContainer"]
+margin_top = 24.0
+margin_right = 83.0
+margin_bottom = 44.0
+text = "RESET SAVE"
+
 [node name="EXIT" type="Button" parent="."]
 margin_left = 1560.0
 margin_right = 1600.0
@@ -93,4 +120,6 @@ text = "EXIT"
 [connection signal="toggled" from="TabContainer/Gameplay/MarginContainer/GridContainer/CheckButton" to="." method="_on_CheckButton_toggled"]
 [connection signal="toggled" from="TabContainer/Gameplay/MarginContainer/GridContainer/CheckButton2" to="." method="_on_CheckButton2_toggled"]
 [connection signal="toggled" from="TabContainer/Gameplay/MarginContainer/GridContainer/CheckButton3" to="." method="_on_CheckButton3_toggled"]
+[connection signal="pressed" from="TabContainer/SAVE/MarginContainer/GridContainer/Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="TabContainer/SAVE/MarginContainer/GridContainer/DeleteSave" to="." method="_on_DeleteSave_pressed"]
 [connection signal="pressed" from="EXIT" to="." method="_on_EXIT_pressed"]

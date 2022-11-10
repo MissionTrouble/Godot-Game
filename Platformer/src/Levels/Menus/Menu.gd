@@ -5,14 +5,15 @@ func _ready():
 
 
 func _on_Start_pressed():
-	Main.coins = 0
-	Main.deaths = 0
-	get_tree().change_scene("res://src/Levels/tutorial.tscn")
+	get_tree().change_scene("res://src/Levels/"+Save.game_data["level"]+".tscn")
 	print("x")
-	Main.time = 0
-	Main.tut = 0
-	Main.l1 = 0
-	Main.l2 - 0
+	Main.time = Save.game_data["time"]
+	Main.deaths = Save.game_data["deaths"]
+	Main.coins = Save.game_data["coins"]
+	print(Save.game_data)
+#	Main.tut = 0
+#	Main.l1 = 0
+#	Main.l2 - 0
 
 
 func _on_Options_pressed():

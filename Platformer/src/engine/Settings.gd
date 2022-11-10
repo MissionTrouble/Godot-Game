@@ -1,7 +1,7 @@
 extends Node
 
 
-var TIMER = true;
+var TIMER = false;
 var COINS = true;
 var DEATHS = true;
 # Declare member variables here. Examples:

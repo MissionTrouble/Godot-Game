@@ -88,6 +88,7 @@ config/icon="res://icon.png"
 
 Main="*res://src/Levels/Main.gd"
 Settings="*res://src/engine/Settings.gd"
+Save="*res://src/engine/Save.gd"
 
 [display]
 

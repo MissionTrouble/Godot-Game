@@ -13,6 +13,7 @@ var scene
 
 func _ready():
 	Main.tempCoins = 0
+	print(self.input_pickable)
 	scene = get_tree().get_current_scene().get_name()
 
 func _physics_process(delta: float) -> void:
@@ -55,16 +56,20 @@ func _physics_process(delta: float) -> void:
 
 
 func get_direction() -> Vector2:
-	print(Engine.time_scale)
 	if(Input.is_action_pressed("open_menu")):
+		Save.game_data["level"] = scene
+		Save.game_data["deaths"] = Main.deaths
+		Save.game_data["coins"] = Main.coins
+		Save.game_data["time"] = Main.time
+		Save.save_data()
 		get_tree().change_scene("res://src/Levels/Menus/Menu.tscn")
 	if(Input.is_action_just_pressed("options")):
 		if(!Main.optionsVisible):
-			get_parent().get_node("Options").show()
+			get_parent().get_node("LevelReq/Options").show()
 			Engine.time_scale = 0
 			Main.optionsVisible = true
 		else:
-			get_parent().get_node("Options").hide()
+			get_parent().get_node("LevelReq/Options").hide()
 			Engine.time_scale = Main.timeScale
 			Main.optionsVisible = false
 	var x: = (Input.get_action_strength("move_right")
@@ -123,4 +128,14 @@ func calculate_stomp_velocity(linear_velocity: Vector2, impulse: float)->Vector2
 func _on_StompDetector_area_entered(area):
 	if(area.name == "StompDetector"):
 		velocity = calculate_stomp_velocity(velocity, stomp_impulse)
+
+
+
+
+func _input(event):
+#	if get_rect().has_point(to_local(event.position)):
+#		print("on sprite")
+#		if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
+#			print("click")
+	pass
 
