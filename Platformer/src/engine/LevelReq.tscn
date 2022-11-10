@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/Levels/Menus/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Levels/Menus/Options.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Levels/Background.tscn" type="PackedScene" id=7]
+
+[node name="LevelReq" type="Node2D"]
+
+[node name="HUD" parent="." instance=ExtResource( 5 )]
+
+[node name="Options" parent="." instance=ExtResource( 6 )]
+margin_left = 82.0
+margin_top = 75.0
+margin_right = 82.0
+margin_bottom = 75.0
+offset = Vector2( 800, 350 )
+
+[node name="ParallaxBackground" parent="." instance=ExtResource( 7 )]

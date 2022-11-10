@@ -10,16 +10,15 @@ var e: = 0.0
 var double_jump_used: = false
 var released_jump = false
 var scene
-var optionsVisible = false
 
 func _ready():
 	Main.tempCoins = 0
 	scene = get_tree().get_current_scene().get_name()
 
 func _physics_process(delta: float) -> void:
-	get_parent().get_node("HUD/HUD").death(Main.deaths)
-	get_parent().get_node("HUD/HUD").coins(Main.coins+Main.tempCoins)
-	get_parent().get_node("HUD/HUD").time(stepify(Main.time,0.1))
+	get_parent().get_node("LevelReq/HUD/HUD").death(Main.deaths)
+	get_parent().get_node("LevelReq/HUD/HUD").coins(Main.coins+Main.tempCoins)
+	get_parent().get_node("LevelReq/HUD/HUD").time(stepify(Main.time,0.1))
 	
 	var direction: = get_direction()
 	
@@ -60,14 +59,14 @@ func get_direction() -> Vector2:
 	if(Input.is_action_pressed("open_menu")):
 		get_tree().change_scene("res://src/Levels/Menus/Menu.tscn")
 	if(Input.is_action_just_pressed("options")):
-		if(!optionsVisible):
+		if(!Main.optionsVisible):
 			get_parent().get_node("Options").show()
 			Engine.time_scale = 0
-			optionsVisible = true
+			Main.optionsVisible = true
 		else:
 			get_parent().get_node("Options").hide()
-			Engine.time_scale = 1
-			optionsVisible = false
+			Engine.time_scale = Main.timeScale
+			Main.optionsVisible = false
 	var x: = (Input.get_action_strength("move_right")
 		-Input.get_action_strength("move_left"))
 	var y: = 1
