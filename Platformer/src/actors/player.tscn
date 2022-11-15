@@ -13,7 +13,6 @@ extents = Vector2( 48, 48 )
 [node name="player" type="KinematicBody2D"]
 position = Vector2( 400, 136 )
 collision_mask = 8
-input_pickable = true
 script = ExtResource( 1 )
 speed = Vector2( 250, 1000 )
 gravity = 300
@@ -26,6 +25,7 @@ texture = ExtResource( 2 )
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, -48 )
 shape = SubResource( 1 )
 
@@ -39,4 +39,3 @@ shape = SubResource( 2 )
 
 [connection signal="area_entered" from="StompDetector" to="." method="_on_StompDetector_area_entered"]
 [connection signal="body_entered" from="StompDetector" to="." method="_on_EnemyDetector_body_entered"]
-[connection signal="input_event" from="StompDetector" to="." method="_on_StompDetector_input_event"]

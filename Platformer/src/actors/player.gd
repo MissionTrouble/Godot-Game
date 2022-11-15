@@ -1,4 +1,4 @@
-extends KinematicBody2D 
+extends "res://src/actors/Actors.gd"
 
 export var speed: = Vector2(800,1500)
 export var gravity: = 400
@@ -7,13 +7,12 @@ export var wallSpeed: = 200
 export var stomp_impulse = 50
 var velocity: = Vector2.ZERO
 var e: = 0.0
-var double_jump_used: = false
+
 var released_jump = false
 var scene
 
 func _ready():
 	Main.tempCoins = 0
-	print(self.input_pickable)
 	scene = get_tree().get_current_scene().get_name()
 
 func _physics_process(delta: float) -> void:
@@ -57,6 +56,9 @@ func _physics_process(delta: float) -> void:
 
 func get_direction() -> Vector2:
 	if(Input.is_action_pressed("open_menu")):
+#		var packed_scene = PackedScene.new()
+#		packed_scene.pack(get_tree().get_current_scene())
+#		Save.game_data["level"] = packed_scene
 		Save.game_data["level"] = scene
 		Save.game_data["deaths"] = Main.deaths
 		Save.game_data["coins"] = Main.coins
@@ -84,58 +86,13 @@ func get_direction() -> Vector2:
 		y =  -1
 	if(on_wall() and Input.is_action_pressed("jump")):
 		y = -1
-
 	return(Vector2(x,y))
-
-func on_floor() -> bool:
-	var ground: = false
-	for index in get_slide_count():
-		var collision: = get_slide_collision(index)
-		if(collision.get_angle() == 0):
-			ground = true
-			double_jump_used = false
-	return ground
-
-func on_wall() -> bool:
-	var wall: = false
-	for index in get_slide_count():
-		var collision: = get_slide_collision(index)
-		if(collision.get_angle()*180/PI > 89.9 and collision.get_angle()*180/PI < 90.1):
-			wall = true
-			double_jump_used = false
-	return wall
-
-func on_roof() -> bool:
-	var roof: = false
-	for index in get_slide_count():
-		var collision: = get_slide_collision(index)
-		if(collision.get_angle()*180/PI > 189.9 and collision.get_angle()*180/PI < 190.1):
-			roof = true
-	return roof
 
 func _on_EnemyDetector_body_entered(_body):
 	Main.deaths += 1
 	get_tree().change_scene("res://src/Levels/"+scene+".tscn")
 
-
-func calculate_stomp_velocity(linear_velocity: Vector2, impulse: float)->Vector2:
-		var out = linear_velocity
-		double_jump_used = false
-		out.y = -impulse
-		return out
-
-
 func _on_StompDetector_area_entered(area):
 	if(area.name == "StompDetector"):
-		velocity = calculate_stomp_velocity(velocity, stomp_impulse)
-
-
-
-
-func _input(event):
-#	if get_rect().has_point(to_local(event.position)):
-#		print("on sprite")
-#		if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-#			print("click")
-	pass
-
+		double_jump_used = false
+		velocity.y = -stomp_impulse

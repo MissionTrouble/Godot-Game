@@ -4,18 +4,13 @@ extends CanvasLayer
 
 
 func death(deaths):
-	if(Settings.DEATHS):
-		$Deaths.text = str("Deaths:" + str(deaths))
-	else:
-		$Deaths.text = str("")
+	$Deaths.visible = Save.settings["deathEnabled"]
+	$Deaths.text = str("Deaths:" + str(deaths))
+
 func coins(coins):
-	if(Settings.COINS):
-		$Coins.text = str("Coins:" + str(coins))
-	else:
-		$Coins.text = str("")
+	$Coins.visible = Save.settings["coinEnabled"]
+	$Coins.text = str("Coins:" + str(coins))
 
 func time(time):
-	if(Settings.TIMER):
-		$Timer.text = str("Time:" + str(time))
-	else:
-		$Timer.text = str("")
+	$Timer.visible = Save.settings["timerEnabled"]
+	$Timer.text = str("Time:" + str(time))
