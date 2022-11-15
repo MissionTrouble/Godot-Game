@@ -64,6 +64,7 @@ func get_direction() -> Vector2:
 		Save.game_data["coins"] = Main.coins
 		Save.game_data["time"] = Main.time
 		Save.save_data()
+		Save.save_settings()
 		get_tree().change_scene("res://src/Levels/Menus/Menu.tscn")
 	if(Input.is_action_just_pressed("options")):
 		if(!Main.optionsVisible):
