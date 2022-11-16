@@ -2,9 +2,6 @@ extends KinematicBody2D
 
 var double_jump_used: = false
 
-func _ready():
-	pass # Replace with function body.
-
 func on_floor() -> bool:
 	var ground: = false
 	for index in get_slide_count():
