@@ -1,5 +1,6 @@
 extends Popup
 
+var offset = Vector2.ZERO
 
 func _ready():
 	update_buttons()
@@ -21,7 +22,7 @@ func _on_Exit_pressed():
 func _process(delta):
 	var cam = get_parent().get_parent().get_node("camera")
 	if(cam != null):
-		rect_global_position = cam.get_camera_position()
+		rect_global_position = cam.get_camera_position()-offset
 
 
 func _on_EXIT_pressed():

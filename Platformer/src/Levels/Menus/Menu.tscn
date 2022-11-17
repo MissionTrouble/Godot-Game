@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/Levels/Menus/Menu.gd" type="Script" id=1]
-[ext_resource path="res://assets/font_default.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/nordiclight.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/Levels/Menus/Options.tscn" type="PackedScene" id=3]
 
 [node name="Menu" type="Control"]
@@ -22,21 +22,21 @@ rect_scale = Vector2( 0.992995, 0.997634 )
 
 [node name="Start" type="Button" parent="VBoxContainer"]
 margin_right = 1104.0
-margin_bottom = 281.0
+margin_bottom = 246.0
 custom_fonts/font = ExtResource( 2 )
 text = "START"
 
 [node name="Options" type="Button" parent="VBoxContainer"]
-margin_top = 285.0
+margin_top = 250.0
 margin_right = 1104.0
-margin_bottom = 566.0
+margin_bottom = 496.0
 custom_fonts/font = ExtResource( 2 )
 text = "OPTIONS"
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
-margin_top = 570.0
+margin_top = 500.0
 margin_right = 1104.0
-margin_bottom = 851.0
+margin_bottom = 746.0
 custom_fonts/font = ExtResource( 2 )
 text = "EXIT"
 
