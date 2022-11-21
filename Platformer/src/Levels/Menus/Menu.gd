@@ -5,8 +5,10 @@ func _ready():
 
 func _on_Start_pressed():
 	print(Save.game_data)
-#	get_tree().change_scene_to(Save.game_data["level"])
-	get_tree().change_scene("res://src/Levels/"+Save.game_data['level']+".tscn")
+	if(Save.experimental):
+		get_tree().change_scene_to(instance_from_id(Save.game_data["level"]))
+	else:
+		get_tree().change_scene("res://src/Levels/"+Save.game_data['level']+".tscn")
 	
 	Main.time = Save.game_data["time"]
 	Main.deaths = Save.game_data["deaths"]
@@ -24,6 +26,6 @@ func _on_Options_pressed():
 
 
 func _on_Exit_pressed():
-	Save.save_data()
-	Save.save_settings()
+	if(Save.settings["autosave"]):
+		Save.save()
 	get_tree().quit()

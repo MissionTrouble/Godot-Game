@@ -1,25 +1,28 @@
 extends Sprite
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-signal forward_change
+
 var changing = false
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	pass # Replace with function body.
+	get_parent().text = "LEFT: " + str(OS.get_scancode_string(Save.controls["move_left"]))
+
+
 
 func _input(event):
 	if event is InputEventKey and event.pressed and changing == true:
 		if(event.scancode == KEY_ESCAPE):
 			get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").hide()
 			changing = false
-		print(event.scancode)
-		
-	
-	
+		else:
+			print(event.scancode)
+			Save.controls["move_left"] = event.scancode
+			get_parent().text = "LEFT: " + str(event.as_text())
+			get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").hide()
+			changing = false
+
+
 	if event is InputEventMouseButton \
 	and get_rect().has_point(to_local(event.position)) \
 	and event.pressed \
@@ -27,10 +30,4 @@ func _input(event):
 	and get_rect().has_point(to_local(event.position)):
 		get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").show()
 		changing = true
-		emit_signal("forward_change")
 		
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

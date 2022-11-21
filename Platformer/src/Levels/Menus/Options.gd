@@ -8,15 +8,16 @@ func _ready():
 func update_buttons():
 	$"TabContainer/Gameplay/MarginContainer/GridContainer/TIMER BUTTON".pressed = Save.settings["timerEnabled"]
 	$"TabContainer/Gameplay/MarginContainer/GridContainer/COIN BUTTON".pressed = Save.settings["coinEnabled"] 
-	$"TabContainer/Gameplay/MarginContainer/GridContainer/DEATH BUTTON".pressed = Save.settings["deathEnabled"] 
+	$"TabContainer/Gameplay/MarginContainer/GridContainer/DEATH BUTTON".pressed = Save.settings["deathEnabled"]
+	$TabContainer/SAVE/MarginContainer/GridContainer/AutoSave.pressed = Save.settings["autosave"] 
 
 
 func _on_Exit_pressed():
 	hide()
 	Engine.time_scale = Main.timeScale
 	Main.optionsVisible = false
-	Save.save_data()
-	Save.save_settings()
+	if(Save.settings["autosave"]):
+		Save.save()
 
 
 func _process(delta):
@@ -29,14 +30,12 @@ func _on_EXIT_pressed():
 	hide()
 	Engine.time_scale = Main.timeScale
 	Main.optionsVisible = false
-
-	Save.save_data()
-	Save.save_settings()
+	if(Save.settings["autosave"]):
+		Save.save()
 
 
 func _on_Save_pressed():
-	Save.save_data()
-	Save.save_settings()
+	Save.save()
 	update_buttons()
 
 
@@ -69,3 +68,8 @@ func _on_RESET_pressed():
 
 	Save.load_settings()
 	update_buttons()
+
+
+func _on_AutoSave_toggled(button_pressed):
+	Save.settings["autosave"] = button_pressed
+	pass # Replace with function body.
