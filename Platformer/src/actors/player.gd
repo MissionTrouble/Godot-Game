@@ -106,6 +106,7 @@ func _on_StompDetector_area_entered(area):
 
 func _input(event):
 	if event is InputEventKey:
+		print(event.as_text())
 		if  event.scancode == Save.controls["jump"]:
 			if(!event.pressed):
 				released_jump = true
@@ -124,12 +125,20 @@ func _input(event):
 
 
 		if event.scancode == Save.controls["move_left"] or event.scancode == Save.controls["move_right"]:
-			if event.scancode == Save.controls["move_left"] and event.pressed:
-				direction.x = -1 
-			elif event.scancode == Save.controls["move_right"] and event.pressed:
-				direction.x = 1 
-			elif !event.pressed or direction.x > 1 or direction.x <-1:
-				direction.x = 0
+			if event.scancode == Save.controls["move_left"]:
+				if event.pressed:
+					direction.x += -1 
+				if !event.pressed:
+					direction.x += 1
+			elif event.scancode == Save.controls["move_right"]:
+				if event.pressed:
+					direction.x += 1 
+				if !event.pressed:
+					direction.x += -1
+			if direction.x >1:
+				direction.x = 1
+			if direction.x <-1:
+				direction.x = -1
 
 
 		if event.scancode == Save.controls["options"] and !event.is_echo() and event.pressed:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/change.png" type="Texture" id=1]
 [ext_resource path="res://src/Levels/Menus/Options.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://src/Levels/Menus/KeyPopup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Levels/Menus/LEFT Button.gd" type="Script" id=7]
 [ext_resource path="res://src/Levels/Menus/RIGHT Button.gd" type="Script" id=8]
+[ext_resource path="res://src/Levels/Menus/MENU Button.gd" type="Script" id=9]
+[ext_resource path="res://src/Levels/Menus/OPTIONS Button.gd" type="Script" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 70
@@ -164,7 +166,7 @@ margin_bottom = 53.0
 
 [node name="GridContainer" type="GridContainer" parent="TabContainer/INPUT/MarginContainer"]
 margin_right = 237.0
-margin_bottom = 152.0
+margin_bottom = 256.0
 
 [node name="JUMP LABEL" type="Label" parent="TabContainer/INPUT/MarginContainer/GridContainer"]
 margin_right = 195.0
@@ -204,6 +206,40 @@ scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 1 )
 script = ExtResource( 8 )
 
+[node name="MENU LABEL" type="Label" parent="TabContainer/INPUT/MarginContainer/GridContainer"]
+margin_top = 156.0
+margin_right = 195.0
+margin_bottom = 204.0
+custom_fonts/font = ExtResource( 3 )
+text = "MENU:"
+
+[node name="MENU Button" type="Sprite" parent="TabContainer/INPUT/MarginContainer/GridContainer/MENU LABEL"]
+position = Vector2( -55, 22 )
+scale = Vector2( 0.35, 0.35 )
+texture = ExtResource( 1 )
+script = ExtResource( 9 )
+
+[node name="OPTIONS LABEL" type="Label" parent="TabContainer/INPUT/MarginContainer/GridContainer"]
+margin_top = 208.0
+margin_right = 195.0
+margin_bottom = 256.0
+custom_fonts/font = ExtResource( 3 )
+text = "OPTIONS:"
+
+[node name="OPTIONS Button" type="Sprite" parent="TabContainer/INPUT/MarginContainer/GridContainer/OPTIONS LABEL"]
+position = Vector2( -55, 22 )
+scale = Vector2( 0.35, 0.35 )
+texture = ExtResource( 1 )
+script = ExtResource( 10 )
+
+[node name="CONTROLS RESET" type="Button" parent="TabContainer/INPUT"]
+margin_left = 12.0
+margin_top = 269.0
+margin_right = 282.0
+margin_bottom = 323.0
+custom_fonts/font = ExtResource( 3 )
+text = "RESET"
+
 [node name="EXIT" type="Button" parent="."]
 margin_left = 1436.0
 margin_top = 5.0
@@ -226,4 +262,5 @@ offset = Vector2( 0, 0 )
 [connection signal="pressed" from="TabContainer/SAVE/MarginContainer/GridContainer/Save" to="." method="_on_Save_pressed"]
 [connection signal="pressed" from="TabContainer/SAVE/MarginContainer/GridContainer/DeleteSave" to="." method="_on_DeleteSave_pressed"]
 [connection signal="toggled" from="TabContainer/SAVE/MarginContainer/GridContainer/AutoSave" to="." method="_on_AutoSave_toggled"]
+[connection signal="pressed" from="TabContainer/INPUT/CONTROLS RESET" to="." method="_on_CONTROLS_RESET_pressed"]
 [connection signal="pressed" from="EXIT" to="." method="_on_EXIT_pressed"]

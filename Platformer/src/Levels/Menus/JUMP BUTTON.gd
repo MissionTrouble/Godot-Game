@@ -7,7 +7,7 @@ var changing = false
 
 
 func _ready():
-	get_parent().text = "JUMP: " + str(Save.controls["jump"])
+	get_parent().text = "JUMP: " + str(OS.get_scancode_string(Save.controls["jump"]))
 
 
 func _input(event):
