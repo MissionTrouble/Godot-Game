@@ -17,7 +17,7 @@ func _physics_process(delta):
 	if(velocity.y < speed.y):
 		velocity.y += delta*gravity
 	move_and_slide(velocity)
-		
+
 func _on_StompDetector_body_entered(body:KinematicBody2D) -> void:
 		queue_free()
 

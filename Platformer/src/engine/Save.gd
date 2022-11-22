@@ -10,9 +10,18 @@ var gamekeys = ["level","deaths","coins","time"]
 var settingskeys = ["timerEnabled","coinEnabled","deathEnabled","autosave"]
 var controlkeys = ["jump","move_left","move_right","options","menu"]
 var controls = {}
+export var first_scene: PackedScene
+
+func _get_configuration_warning() -> String:
+	if not first_scene:
+		return "The next scene property can't be empty" 
+	else:
+		return ""
+
 
 func _ready():
-	
+	var dir = Directory.new()
+	dir.remove("user://save_file.save")
 	load_settings()
 	load_data()
 	load_controls()
@@ -56,7 +65,8 @@ func load_data():
 	if not file.file_exists(SAVE_FILE) or !game_data.has_all(gamekeys):
 		var level
 		if(experimental):
-			level = preload("res://src/Levels/Tutorial.tscn")
+			var temp = preload("res://src/Levels/Tutorial.tscn")
+			print(temp)
 		else:
 			level = "tutorial"
 		game_data = {
