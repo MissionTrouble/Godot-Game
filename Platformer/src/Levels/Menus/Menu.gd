@@ -4,9 +4,9 @@ func _ready():
 	$VBoxContainer/Start.grab_focus()
 
 func _on_Start_pressed():
-	print(Save.game_data)
 	if(Save.experimental):
-		get_tree().change_scene_to(instance_from_id(Save.game_data["level"]))
+		print(Save.level)
+		get_tree().change_scene_to(Save.level)
 	else:
 		get_tree().change_scene("res://src/Levels/"+Save.game_data['level']+".tscn")
 	

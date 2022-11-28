@@ -5,12 +5,13 @@ const SETTINGS_FILE = "user://settings_file.save"
 const CONTROLS_FILE = "user://controls_file.save"
 var game_data = {}
 var settings = {}
-var experimental = false
-var gamekeys = ["level","deaths","coins","time"]
+var level: PackedScene
+var experimental = true
+var gamekeys = ["deaths","coins","time"]
 var settingskeys = ["timerEnabled","coinEnabled","deathEnabled","autosave"]
 var controlkeys = ["jump","move_left","move_right","options","menu"]
 var controls = {}
-export var first_scene: PackedScene
+onready var first_scene: PackedScene = preload("res://src/Levels/Tutorial.tscn")
 
 func _get_configuration_warning() -> String:
 	if not first_scene:
@@ -25,6 +26,7 @@ func _ready():
 	load_settings()
 	load_data()
 	load_controls()
+	load_level()
 	print(controls)
 
 
@@ -32,6 +34,15 @@ func save():
 	save_controls()
 	save_data()
 	save_settings()
+	save_level()
+
+func save_level():
+	ResourceSaver.save("res://level.tscn", level)
+
+func load_level():
+#	level = preload("res://src/Levels/Tutorial.tscn")
+	level = preload("res://level.tscn")
+	ResourceSaver.save("res://level.tscn", level)
 
 func save_controls():
 	var file = File.new()
@@ -54,7 +65,6 @@ func load_controls():
 	file.close()
 
 func save_data():
-	print(game_data)
 	var file = File.new()
 	file.open(SAVE_FILE, File.WRITE)
 	file.store_var(game_data)
@@ -63,14 +73,7 @@ func save_data():
 func load_data():
 	var file = File.new()
 	if not file.file_exists(SAVE_FILE) or !game_data.has_all(gamekeys):
-		var level
-		if(experimental):
-			var temp = preload("res://src/Levels/Tutorial.tscn")
-			print(temp)
-		else:
-			level = "tutorial"
 		game_data = {
-			"level": level,
 			"deaths": 0,
 			"coins": 0,
 			"time":0,

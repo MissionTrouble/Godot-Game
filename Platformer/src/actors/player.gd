@@ -153,15 +153,19 @@ func _input(event):
 
 
 		if event.scancode == Save.controls["menu"] and !event.is_echo() and event.pressed:
+			var packed_scene = PackedScene.new()
+			packed_scene.pack(get_tree().get_current_scene())
+			if(Save.experimental):
+				Save.game_data["level"] = packed_scene
+			else:
+				Save.game_data["level"] = scene
+			Save.game_data["deaths"] = Main.deaths
+			Save.game_data["coins"] = Main.coins
+			Save.game_data["time"] = Main.time
+			Save.level = packed_scene
+			print(packed_scene)
+			print(Save.level)
 			if(Save.settings["autosave"]):
-				var packed_scene = PackedScene.new()
-				packed_scene.pack(get_tree().get_current_scene())
-				if(Save.experimental):
-					Save.game_data["level"] = packed_scene
-				else:
-					Save.game_data["level"] = scene
-				Save.game_data["deaths"] = Main.deaths
-				Save.game_data["coins"] = Main.coins
-				Save.game_data["time"] = Main.time
 				Save.save()
+			
 			get_tree().change_scene("res://src/Levels/Menus/Menu.tscn")

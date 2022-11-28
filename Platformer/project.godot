@@ -9,6 +9,31 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "PackedArrayPropertyEditor",
+"class": "ArrayPropertyEditor",
+"language": "GDScript",
+"path": "res://addons/dictionary_inspector/elements/array_property_editor.gd"
+}, {
+"base": "Resource",
+"class": "AverageDictionaryEnjoyer",
+"language": "GDScript",
+"path": "res://average_dictionary_enjoyer.gd"
+}, {
+"base": "VBoxContainer",
+"class": "BaseCollectionPropertyEditor",
+"language": "GDScript",
+"path": "res://addons/dictionary_inspector/elements/base_property_editor.gd"
+}, {
+"base": "Button",
+"class": "CollectionHeaderButton",
+"language": "GDScript",
+"path": "res://addons/dictionary_inspector/elements/collection_header_button.gd"
+}, {
+"base": "EditorResourcePicker",
+"class": "CustomResourcePicker",
+"language": "GDScript",
+"path": "res://addons/dictionary_inspector/elements/custom_resource_picker.gd"
+}, {
 "base": "Reference",
 "class": "DTS",
 "language": "GDScript",
@@ -59,12 +84,62 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/dialogic/Other/DialogicUtil.gd"
 }, {
+"base": "PackedArrayPropertyEditor",
+"class": "DictPropertyEditor",
+"language": "GDScript",
+"path": "res://addons/dictionary_inspector/elements/dict_property_editor.gd"
+}, {
+"base": "EditorInspectorPlugin",
+"class": "DictionaryInspectorPlugin",
+"language": "GDScript",
+"path": "res://addons/dictionary_inspector/inspector_plugin.gd"
+}, {
+"base": "EditorProperty",
+"class": "DictionaryInspectorProperty",
+"language": "GDScript",
+"path": "res://addons/dictionary_inspector/inspector_property.gd"
+}, {
+"base": "Button",
+"class": "EditorArrayIndex",
+"language": "GDScript",
+"path": "res://addons/dictionary_inspector/elements/array_index.gd"
+}, {
 "base": "PanelContainer",
 "class": "HistoryRow",
 "language": "GDScript",
 "path": "res://addons/dialogic/Example Assets/History/HistoryRow.gd"
+}, {
+"base": "BaseCollectionPropertyEditor",
+"class": "ObjectPropertyEditor",
+"language": "GDScript",
+"path": "res://addons/dictionary_inspector/elements/object_property_editor.gd"
+}, {
+"base": "BaseCollectionPropertyEditor",
+"class": "PackedArrayPropertyEditor",
+"language": "GDScript",
+"path": "res://addons/dictionary_inspector/elements/packed_array_property_editor.gd"
+}, {
+"base": "GridContainer",
+"class": "TensorPropertyEditor",
+"language": "GDScript",
+"path": "res://addons/dictionary_inspector/elements/tensor_property_editor.gd"
+}, {
+"base": "Button",
+"class": "ThemeIconButton",
+"language": "GDScript",
+"path": "res://addons/dictionary_inspector/elements/editor_icon_button.gd"
+}, {
+"base": "OptionButton",
+"class": "TypeOptionButton",
+"language": "GDScript",
+"path": "res://addons/dictionary_inspector/elements/type_option_button.gd"
 } ]
 _global_script_class_icons={
+"ArrayPropertyEditor": "",
+"AverageDictionaryEnjoyer": "",
+"BaseCollectionPropertyEditor": "",
+"CollectionHeaderButton": "",
+"CustomResourcePicker": "",
 "DTS": "",
 "Dialogic": "",
 "DialogicAnimaPropertiesHelper": "",
@@ -75,7 +150,16 @@ _global_script_class_icons={
 "DialogicParser": "",
 "DialogicResources": "",
 "DialogicUtil": "",
-"HistoryRow": ""
+"DictPropertyEditor": "",
+"DictionaryInspectorPlugin": "",
+"DictionaryInspectorProperty": "",
+"EditorArrayIndex": "",
+"HistoryRow": "",
+"ObjectPropertyEditor": "",
+"PackedArrayPropertyEditor": "",
+"TensorPropertyEditor": "",
+"ThemeIconButton": "",
+"TypeOptionButton": ""
 }
 
 [application]
@@ -100,7 +184,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/SimpleTODO/plugin.cfg", "res://addons/dialogic/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/SimpleTODO/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/dictionary_inspector/plugin.cfg" )
 
 [global]
 

@@ -9,6 +9,7 @@ var l1 = 0
 var l2 = 0
 var lastScene
 var optionsVisible = false
+var menuVisible = false
 var timeScale = 1
 # Called when the node enters the scene tree for the first time.
 
