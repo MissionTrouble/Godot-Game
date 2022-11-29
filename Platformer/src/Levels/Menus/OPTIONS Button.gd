@@ -27,7 +27,8 @@ func _input(event):
 	and get_rect().has_point(to_local(event.position)) \
 	and event.pressed \
 	and event.button_index == BUTTON_LEFT \
-	and get_rect().has_point(to_local(event.position)):
+	and get_rect().has_point(to_local(event.position)) \
+	and get_parent().get_parent().get_parent().get_parent().get_parent().current_tab == 2:
 		get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").show()
 		changing = true
 		

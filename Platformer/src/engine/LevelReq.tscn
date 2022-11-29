@@ -13,6 +13,5 @@ margin_left = 82.0
 margin_top = 75.0
 margin_right = 82.0
 margin_bottom = 75.0
-offset = Vector2( 800, 350 )
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 7 )]

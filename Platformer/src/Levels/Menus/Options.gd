@@ -1,6 +1,6 @@
 extends Popup
 
-var offset = Vector2.ZERO
+export var offset = Vector2(800,400)
 
 func _ready():
 	update_buttons()
@@ -50,7 +50,7 @@ func _on_Save_pressed():
 func _on_DeleteSave_pressed():
 	var dir = Directory.new()
 	dir.remove("user://save_file.save")
-
+	Save.level_reset()
 	Save.load_data()
 	update_buttons()
 

@@ -13,22 +13,14 @@ var controlkeys = ["jump","move_left","move_right","options","menu"]
 var controls = {}
 onready var first_scene: PackedScene = preload("res://src/Levels/Tutorial.tscn")
 
-func _get_configuration_warning() -> String:
-	if not first_scene:
-		return "The next scene property can't be empty" 
-	else:
-		return ""
-
-
 func _ready():
-	var dir = Directory.new()
-	dir.remove("user://save_file.save")
+#	var dir = Directory.new()
+#	dir.remove("user://save_file.save")
 	load_settings()
 	load_data()
 	load_controls()
 	load_level()
 	print(controls)
-
 
 func save():
 	save_controls()
@@ -38,6 +30,9 @@ func save():
 
 func save_level():
 	ResourceSaver.save("res://level.tscn", level)
+
+func level_reset():
+	level = preload("res://src/Levels/Tutorial.tscn")
 
 func load_level():
 #	level = preload("res://src/Levels/Tutorial.tscn")
@@ -63,6 +58,15 @@ func load_controls():
 	file.open(CONTROLS_FILE, file.READ)
 	controls = file.get_var()
 	file.close()
+	if !controls.has_all(controlkeys):
+		controls = {
+			"jump":KEY_W,
+			"move_left":KEY_A,
+			"move_right":KEY_D,
+			"options":KEY_O,
+			"menu":KEY_M
+			}
+		save_controls()
 
 func save_data():
 	var file = File.new()
@@ -72,7 +76,7 @@ func save_data():
 
 func load_data():
 	var file = File.new()
-	if not file.file_exists(SAVE_FILE) or !game_data.has_all(gamekeys):
+	if not file.file_exists(SAVE_FILE):
 		game_data = {
 			"deaths": 0,
 			"coins": 0,
@@ -82,10 +86,17 @@ func load_data():
 	file.open(SAVE_FILE, file.READ)
 	game_data = file.get_var()
 	file.close()
+	if !game_data.has_all(gamekeys):
+		game_data = {
+			"deaths": 0,
+			"coins": 0,
+			"time":0,
+		}
+		save_data()
 
 func load_settings():
 	var file = File.new()
-	if not file.file_exists(SETTINGS_FILE) or !settings.has_all(settingskeys):
+	if not file.file_exists(SETTINGS_FILE):
 		settings = {
 			"timerEnabled":false,
 			"coinEnabled":true,
@@ -96,6 +107,14 @@ func load_settings():
 	file.open(SETTINGS_FILE, file.READ)
 	settings = file.get_var()
 	file.close()
+	if !settings.has_all(settingskeys):
+		settings = {
+			"timerEnabled":false,
+			"coinEnabled":true,
+			"deathEnabled":true,
+			"autosave": false
+		}
+		save_settings()
 	
 func save_settings():
 	print(settings)
