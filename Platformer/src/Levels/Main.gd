@@ -11,7 +11,6 @@ var lastScene
 var optionsVisible = false
 var menuVisible = false
 var timeScale = 1
-# Called when the node enters the scene tree for the first time.
 
 
 func _process(delta):

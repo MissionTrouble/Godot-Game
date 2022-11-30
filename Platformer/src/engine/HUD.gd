@@ -1,7 +1,5 @@
 extends CanvasLayer
 
-#signal start_game
-
 
 func death(deaths):
 	$Deaths.visible = Save.settings["deathEnabled"]
