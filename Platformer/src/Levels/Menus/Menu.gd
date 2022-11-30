@@ -5,7 +5,6 @@ func _ready():
 
 func _on_Start_pressed():
 	if(Save.experimental):
-		print(Save.level)
 		get_tree().change_scene_to(Save.level)
 	else:
 		get_tree().change_scene("res://src/Levels/"+Save.game_data['level']+".tscn")

@@ -7,9 +7,9 @@ var game_data = {}
 var settings = {}
 var level: PackedScene
 var experimental = true
-var gamekeys = ["deaths","coins","time"]
+var gamekeys = ["deaths","coins","tempcoins","time"]
 var settingskeys = ["timerEnabled","coinEnabled","deathEnabled","autosave"]
-var controlkeys = ["jump","move_left","move_right","options","menu"]
+var controlkeys = ["jump","move_left","move_right","options","menu","test"]
 var controls = {}
 onready var first_scene: PackedScene = preload("res://src/Levels/Tutorial.tscn")
 
@@ -20,7 +20,6 @@ func _ready():
 	load_data()
 	load_controls()
 	load_level()
-	print(controls)
 
 func save():
 	save_controls()
@@ -48,24 +47,35 @@ func save_controls():
 func load_controls():
 	var file = File.new()
 	if not file.file_exists(CONTROLS_FILE):
-		controls = {"jump":KEY_W,
-				"move_left":KEY_A,
-				"move_right":KEY_D,
-				"options":KEY_O,
-				"menu":KEY_M
-				}
-		save_controls()
-	file.open(CONTROLS_FILE, file.READ)
-	controls = file.get_var()
-	file.close()
-	if !controls.has_all(controlkeys):
 		controls = {
 			"jump":KEY_W,
 			"move_left":KEY_A,
 			"move_right":KEY_D,
 			"options":KEY_O,
-			"menu":KEY_M
+			"menu":[KEY_M,KEY_ESCAPE]
 			}
+		save_controls()
+	file.open(CONTROLS_FILE, file.READ)
+	controls = file.get_var()
+	file.close()
+	if !controls.has_all(controlkeys):
+		print(INPUT.expirimental)
+		if INPUT.expirimental:
+			controls = {
+				"jump":[KEY_W],
+				"move_left":[KEY_A],
+				"move_right":[KEY_D],
+				"options":[KEY_O],
+				"menu":[KEY_M,KEY_ESCAPE]
+				}
+#		else:
+#			controls = {
+#				"jump":KEY_W,
+#				"move_left":KEY_A,
+#				"move_right":KEY_D,
+#				"options":KEY_O,
+#				"menu":[KEY_M,KEY_ESCAPE]
+#				}
 		save_controls()
 
 func save_data():
@@ -80,9 +90,11 @@ func load_data():
 		game_data = {
 			"deaths": 0,
 			"coins": 0,
+			"tempcoins":0,
 			"time":0,
 		}
 		save_data()
+		level_reset()
 	file.open(SAVE_FILE, file.READ)
 	game_data = file.get_var()
 	file.close()
@@ -90,10 +102,11 @@ func load_data():
 		game_data = {
 			"deaths": 0,
 			"coins": 0,
+			"tempcoins":0,
 			"time":0,
 		}
 		save_data()
-
+		level_reset()
 func load_settings():
 	var file = File.new()
 	if not file.file_exists(SETTINGS_FILE):
@@ -117,7 +130,6 @@ func load_settings():
 		save_settings()
 	
 func save_settings():
-	print(settings)
 	var file = File.new()
 	file.open(SETTINGS_FILE, File.WRITE)
 	file.store_var(settings)

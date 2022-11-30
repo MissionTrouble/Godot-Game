@@ -13,8 +13,6 @@ func teleport() -> void:
 	yield(anim_player, "animation_finished")
 	get_tree().change_scene_to(next_scene)
 
-
-
 func _on_body_entered(body):
 	Main.coins += Main.tempCoins
 	Main.tempCoins = 0

@@ -19,15 +19,14 @@ func _ready():
 	get_node("/root/INPUT").connect("move_right", self, "move_right")
 	get_node("/root/INPUT").connect("move_left", self, "move_left")
 	get_node("/root/INPUT").connect("jump", self, "jump")
-	get_node("/root/INPUT").connect("notjump", self, "notjump")
-	Main.tempCoins = 0
 	scene = get_tree().get_current_scene().get_name()
 	if(INPUT.left):
-		print("left")
 		direction.x += -1
+		print("LEFT")
+	print(INPUT.right)
 	if(INPUT.right):
-		print("right")
 		direction.x += 1
+		print("RIGHT")
 
 func _physics_process(delta: float) -> void:
 #	print(Main.time - stepify(Main.time,1))
@@ -74,6 +73,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_EnemyDetector_body_entered(_body):
 	Main.deaths += 1
+	Main.tempCoins = 0
 	get_tree().change_scene("res://src/Levels/"+scene+".tscn")
 
 func _on_StompDetector_area_entered(area):
@@ -136,18 +136,10 @@ func menu(event):
 		Save.game_data["level"] = scene
 	Save.game_data["deaths"] = Main.deaths
 	Save.game_data["coins"] = Main.coins
+	Save.game_data["tempcoins"] = Main.tempCoins
 	Save.game_data["time"] = Main.time
 	Save.level = packed_scene
 	if(Save.settings["autosave"]):
 		Save.save()
-	get_tree().change_scene("res://src/Levels/Menus/Menu.tscn")
-
-
-func on_wall() -> bool:
-	var wall: = false
-	for index in get_slide_count():
-		var collision: = get_slide_collision(index)
-		if(collision.get_angle()*180/PI > 89.9 and collision.get_angle()*180/PI < 90.1):
-			wall = true
-			double_jump_used = false
-	return wall
+	if(!get_parent().get_node("LevelReq/Options").visible):
+		get_tree().change_scene("res://src/Levels/Menus/Menu.tscn")

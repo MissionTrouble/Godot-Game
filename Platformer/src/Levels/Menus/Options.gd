@@ -10,12 +10,18 @@ func update_buttons():
 	$"TabContainer/Gameplay/MarginContainer/GridContainer/COIN BUTTON".pressed = Save.settings["coinEnabled"] 
 	$"TabContainer/Gameplay/MarginContainer/GridContainer/DEATH BUTTON".pressed = Save.settings["deathEnabled"]
 	$TabContainer/SAVE/MarginContainer/GridContainer/AutoSave.pressed = Save.settings["autosave"] 
-	$"TabContainer/INPUT/MarginContainer/GridContainer/JUMP LABEL".text = "JUMP: " + str(OS.get_scancode_string(Save.controls["jump"]))
-	$"TabContainer/INPUT/MarginContainer/GridContainer/LEFT LABEL".text = "LEFT: " + str(OS.get_scancode_string(Save.controls["move_left"]))
-	$"TabContainer/INPUT/MarginContainer/GridContainer/RIGHT LABEL".text = "RIGHT: " + str(OS.get_scancode_string(Save.controls["move_right"]))
-	$"TabContainer/INPUT/MarginContainer/GridContainer/OPTIONS LABEL".text = "OPTIONS: " + str(OS.get_scancode_string(Save.controls["options"]))
-	$"TabContainer/INPUT/MarginContainer/GridContainer/MENU LABEL".text = "MENU: " + str(OS.get_scancode_string(Save.controls["menu"]))
-	pass
+	if INPUT.expirimental:
+		$"TabContainer/INPUT/MarginContainer/GridContainer/JUMP LABEL".text = "JUMP: " + str(OS.get_scancode_string(Save.controls["jump"][0]))
+		$"TabContainer/INPUT/MarginContainer/GridContainer/LEFT LABEL".text = "LEFT: " + str(OS.get_scancode_string(Save.controls["move_left"][0]))
+		$"TabContainer/INPUT/MarginContainer/GridContainer/RIGHT LABEL".text = "RIGHT: " + str(OS.get_scancode_string(Save.controls["move_right"][0]))
+		$"TabContainer/INPUT/MarginContainer/GridContainer/OPTIONS LABEL".text = "OPTIONS: " + str(OS.get_scancode_string(Save.controls["options"][0]))
+		$"TabContainer/INPUT/MarginContainer/GridContainer/MENU LABEL".text = "MENU: " + str(OS.get_scancode_string(Save.controls["menu"][0]))
+	else:
+		$"TabContainer/INPUT/MarginContainer/GridContainer/JUMP LABEL".text = "JUMP: " + str(OS.get_scancode_string(Save.controls["jump"]))
+		$"TabContainer/INPUT/MarginContainer/GridContainer/LEFT LABEL".text = "LEFT: " + str(OS.get_scancode_string(Save.controls["move_left"]))
+		$"TabContainer/INPUT/MarginContainer/GridContainer/RIGHT LABEL".text = "RIGHT: " + str(OS.get_scancode_string(Save.controls["move_right"]))
+		$"TabContainer/INPUT/MarginContainer/GridContainer/OPTIONS LABEL".text = "OPTIONS: " + str(OS.get_scancode_string(Save.controls["options"]))
+		$"TabContainer/INPUT/MarginContainer/GridContainer/MENU LABEL".text = "MENU: " + str(OS.get_scancode_string(Save.controls["menu"]))
 
 
 func _on_Exit_pressed():
@@ -27,8 +33,8 @@ func _on_Exit_pressed():
 
 
 func _process(delta):
-	var cam = get_parent().get_parent().get_node("camera")
-	if(cam != null):
+	if get_parent().get_parent().get_node_or_null("camera") != null:
+		var cam = get_parent().get_parent().get_node("camera")
 		rect_global_position = cam.get_camera_position()-offset
 
 
@@ -53,7 +59,6 @@ func _on_DeleteSave_pressed():
 	Save.level_reset()
 	Save.load_data()
 	update_buttons()
-
 	get_tree().change_scene("res://src/Levels/Menus/Menu.tscn")
 	Engine.time_scale = Main.timeScale
 
@@ -73,25 +78,21 @@ func _on_Timer_toggled(button_pressed):
 func _on_RESET_pressed():
 	var dir = Directory.new()
 	dir.remove("user://settings_file.save")
-
 	Save.load_settings()
 	update_buttons()
 
 
 func _on_AutoSave_toggled(button_pressed):
 	Save.settings["autosave"] = button_pressed
-	pass # Replace with function body.
-
-
-
 
 
 func _on_CONTROLS_RESET_pressed():
-	Save.controls = {"jump":KEY_W,
-			"move_left":KEY_A,
-			"move_right":KEY_D,
-			"options":KEY_O,
-			"menu":KEY_M
-			}
+	Save.controls = {
+				"jump":[KEY_W],
+				"move_left":[KEY_A],
+				"move_right":[KEY_D],
+				"options":[KEY_O],
+				"menu":[KEY_M,KEY_ESCAPE]
+				}
 	Save.save_controls()
 	update_buttons()

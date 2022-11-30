@@ -6,7 +6,7 @@ var changing = false
 
 
 func _ready():
-	get_parent().text = "MENU: " + str(OS.get_scancode_string(Save.controls["menu"]))
+	get_parent().text = "MENU: " + str(OS.get_scancode_string(Save.controls["menu"][0]))
 
 
 
@@ -16,8 +16,7 @@ func _input(event):
 			get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").hide()
 			changing = false
 		else:
-			print(event.scancode)
-			Save.controls["menu"] = event.scancode
+			Save.controls["menu"][0] = event.scancode
 			get_parent().text = "MENU: " + str(event.as_text())
 			get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").hide()
 			changing = false

@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/actors/player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player.png" type="Texture" id=2]
-[ext_resource path="res://src/actors/CLICKTEST.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 47, 48 )
@@ -22,7 +21,6 @@ stomp_impulse = 200
 [node name="Player" type="Sprite" parent="."]
 position = Vector2( 0, -48 )
 texture = ExtResource( 2 )
-script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

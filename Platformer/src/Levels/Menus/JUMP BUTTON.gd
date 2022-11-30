@@ -2,24 +2,25 @@ extends Sprite
 
 
 
-signal forward_change
 var changing = false
 
 
 func _ready():
-	get_parent().text = "JUMP: " + str(OS.get_scancode_string(Save.controls["jump"]))
+	if !INPUT.expirimental:
+		get_parent().text = "JUMP: " + str(OS.get_scancode_string(Save.controls["jump"]))
+	else:
+		get_parent().text = "JUMP: " + str(OS.get_scancode_string(Save.controls["jump"][0]))
 
 
 func _input(event):
 	if event is InputEventKey and event.pressed and changing == true:
 		if(event.scancode == KEY_ESCAPE):
-			get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").hide()
+			get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").visible = false
 			changing = false
 		else:
-			print(event.scancode)
-			Save.controls["jump"] = event.scancode
+			Save.controls["jump"][0] = event.scancode
 			get_parent().text = "JUMP: " + str(event.as_text())
-			get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").hide()
+			get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").visible = false
 			changing = false
 
 
@@ -29,7 +30,7 @@ func _input(event):
 	and event.button_index == BUTTON_LEFT \
 	and get_rect().has_point(to_local(event.position)) \
 	and get_parent().get_parent().get_parent().get_parent().get_parent().current_tab == 2:
-		get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").show()
+		get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").visible = true
 		changing = true
 	
 	if event is InputEventMouse \
