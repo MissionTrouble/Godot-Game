@@ -6,7 +6,9 @@ signal options(event)
 signal move_left(event)
 signal move_right(event)
 signal jump(event)
-var jump
+var jump = false
+var left = false
+var right = false
 
 
 
@@ -18,8 +20,18 @@ func _input(event):
 			emit_signal("options", event)
 		if event.scancode == Save.controls["move_right"]:
 			emit_signal("move_right", event)
+			if(event.pressed):
+				right = true
+			else:
+				right = false
+
 		if event.scancode == Save.controls["move_left"]:
 			emit_signal("move_left", event)
+			if(event.pressed):
+				left = true
+			else:
+				left = false
+
 		if(event.scancode == Save.controls["jump"]):
 			emit_signal("jump", event)
 			if(event.pressed):

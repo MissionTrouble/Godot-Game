@@ -22,8 +22,19 @@ func _ready():
 	get_node("/root/INPUT").connect("notjump", self, "notjump")
 	Main.tempCoins = 0
 	scene = get_tree().get_current_scene().get_name()
+	if(INPUT.left):
+		print("left")
+		direction.x += -1
+	if(INPUT.right):
+		print("right")
+		direction.x += 1
 
 func _physics_process(delta: float) -> void:
+#	print(Main.time - stepify(Main.time,1))
+#	if(Main.time - stepify(Main.time,1) <= 0.013 and Main.time - stepify(Main.time,1) >= 0 and stepify(Main.time,1) >0):
+##		print(Main.time - stepify(Main.time,1))
+#		print(str(stepify(Main.time,1))+": right: "+str(INPUT.right))
+#		print(str(stepify(Main.time,1))+": left: "+str(INPUT.left))
 	get_parent().get_node("LevelReq/HUD/HUD").death(Main.deaths)
 	get_parent().get_node("LevelReq/HUD/HUD").coins(Main.coins+Main.tempCoins)
 	get_parent().get_node("LevelReq/HUD/HUD").time(stepify(Main.time,0.1))
@@ -84,24 +95,26 @@ func jump(event):
 
 
 func move_left(event):
-	if event.pressed:
-		direction.x += -1 
-	if !event.pressed:
-		direction.x += 1
-	if direction.x >1:
-		direction.x = 1
-	if direction.x <-1:
-		direction.x = -1
+	if(!event.is_echo()):
+		if event.pressed:
+			direction.x += -1 
+		if !event.pressed:
+			direction.x += 1
+		if direction.x >1:
+			direction.x = 1
+		if direction.x <-1:
+			direction.x = -1
 
 func move_right(event):
-	if event.pressed:
-		direction.x += 1 
-	if !event.pressed:
-		direction.x += -1
-	if direction.x >1:
-		direction.x = 1
-	if direction.x <-1:
-		direction.x = -1
+	if(!event.is_echo()):
+		if event.pressed:
+			direction.x += 1 
+		if !event.pressed:
+			direction.x += -1
+		if direction.x >1:
+			direction.x = 1
+		if direction.x <-1:
+			direction.x = -1
 
 
 func options(event):
