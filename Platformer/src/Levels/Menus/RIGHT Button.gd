@@ -6,10 +6,7 @@ var changing = false
 
 
 func _ready():
-	if !INPUT.expirimental:
-		get_parent().text = "RIGHT: " + str(OS.get_scancode_string(Save.controls["move_right"]))
-	else:
-		get_parent().text = "RIGHT: " + str(OS.get_scancode_string(Save.controls["move_right"][0]))
+	get_parent().text = "RIGHT: " + str(OS.get_scancode_string(Save.controls["move_right"][0]))
 
 
 func _input(event):

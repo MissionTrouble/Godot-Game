@@ -8,7 +8,7 @@ export var stomp_impulse = 50
 var velocity: = Vector2.ZERO
 var e: = 0.0
 
-var released_jump = false
+var released_jump = true
 var scene
 var direction: = Vector2.ZERO
 
@@ -20,15 +20,14 @@ func _ready():
 	get_node("/root/INPUT").connect("move_left", self, "move_left")
 	get_node("/root/INPUT").connect("jump", self, "jump")
 	scene = get_tree().get_current_scene().get_name()
+	direction.x = 0
 	if(INPUT.left):
 		direction.x += -1
-		print("LEFT")
-	print(INPUT.right)
 	if(INPUT.right):
 		direction.x += 1
-		print("RIGHT")
 
 func _physics_process(delta: float) -> void:
+	
 #	print(Main.time - stepify(Main.time,1))
 #	if(Main.time - stepify(Main.time,1) <= 0.013 and Main.time - stepify(Main.time,1) >= 0 and stepify(Main.time,1) >0):
 ##		print(Main.time - stepify(Main.time,1))

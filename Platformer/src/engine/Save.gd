@@ -59,23 +59,14 @@ func load_controls():
 	controls = file.get_var()
 	file.close()
 	if !controls.has_all(controlkeys):
-		print(INPUT.expirimental)
-		if INPUT.expirimental:
-			controls = {
-				"jump":[KEY_W],
-				"move_left":[KEY_A],
-				"move_right":[KEY_D],
-				"options":[KEY_O],
-				"menu":[KEY_M,KEY_ESCAPE]
-				}
-#		else:
-#			controls = {
-#				"jump":KEY_W,
-#				"move_left":KEY_A,
-#				"move_right":KEY_D,
-#				"options":KEY_O,
-#				"menu":[KEY_M,KEY_ESCAPE]
-#				}
+		controls = {
+			"jump":[KEY_W],
+			"move_left":[KEY_A],
+			"move_right":[KEY_D],
+			"options":[KEY_O],
+			"menu":[KEY_M,KEY_ESCAPE]
+			}
+
 		save_controls()
 
 func save_data():

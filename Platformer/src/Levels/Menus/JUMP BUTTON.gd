@@ -1,14 +1,9 @@
 extends Sprite
 
-
-
 var changing = false
 
 
 func _ready():
-	if !INPUT.expirimental:
-		get_parent().text = "JUMP: " + str(OS.get_scancode_string(Save.controls["jump"]))
-	else:
 		get_parent().text = "JUMP: " + str(OS.get_scancode_string(Save.controls["jump"][0]))
 
 
@@ -28,8 +23,7 @@ func _input(event):
 	and get_rect().has_point(to_local(event.position)) \
 	and event.pressed \
 	and event.button_index == BUTTON_LEFT \
-	and get_rect().has_point(to_local(event.position)) \
-	and get_parent().get_parent().get_parent().get_parent().get_parent().current_tab == 2:
+	and get_parent().get_parent().get_parent().get_parent().get_parent().current_tab == 1:
 		get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").visible = true
 		changing = true
 	

@@ -6,10 +6,7 @@ var changing = false
 
 
 func _ready():
-#	if !INPUT.expirimental:
-#		get_parent().text = "OPTIONS: " + str(OS.get_scancode_string(Save.controls["options"]))
-#	else:
-		get_parent().text = "OPTIONS: " + str(OS.get_scancode_string(Save.controls["options"][0]))
+	get_parent().text = "OPTIONS: " + str(OS.get_scancode_string(Save.controls["options"][0]))
 
 
 

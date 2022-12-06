@@ -10,18 +10,11 @@ func update_buttons():
 	$"TabContainer/Gameplay/MarginContainer/GridContainer/COIN BUTTON".pressed = Save.settings["coinEnabled"] 
 	$"TabContainer/Gameplay/MarginContainer/GridContainer/DEATH BUTTON".pressed = Save.settings["deathEnabled"]
 	$TabContainer/SAVE/MarginContainer/GridContainer/AutoSave.pressed = Save.settings["autosave"] 
-	if INPUT.expirimental:
-		$"TabContainer/INPUT/MarginContainer/GridContainer/JUMP LABEL".text = "JUMP: " + str(OS.get_scancode_string(Save.controls["jump"][0]))
-		$"TabContainer/INPUT/MarginContainer/GridContainer/LEFT LABEL".text = "LEFT: " + str(OS.get_scancode_string(Save.controls["move_left"][0]))
-		$"TabContainer/INPUT/MarginContainer/GridContainer/RIGHT LABEL".text = "RIGHT: " + str(OS.get_scancode_string(Save.controls["move_right"][0]))
-		$"TabContainer/INPUT/MarginContainer/GridContainer/OPTIONS LABEL".text = "OPTIONS: " + str(OS.get_scancode_string(Save.controls["options"][0]))
-		$"TabContainer/INPUT/MarginContainer/GridContainer/MENU LABEL".text = "MENU: " + str(OS.get_scancode_string(Save.controls["menu"][0]))
-	else:
-		$"TabContainer/INPUT/MarginContainer/GridContainer/JUMP LABEL".text = "JUMP: " + str(OS.get_scancode_string(Save.controls["jump"]))
-		$"TabContainer/INPUT/MarginContainer/GridContainer/LEFT LABEL".text = "LEFT: " + str(OS.get_scancode_string(Save.controls["move_left"]))
-		$"TabContainer/INPUT/MarginContainer/GridContainer/RIGHT LABEL".text = "RIGHT: " + str(OS.get_scancode_string(Save.controls["move_right"]))
-		$"TabContainer/INPUT/MarginContainer/GridContainer/OPTIONS LABEL".text = "OPTIONS: " + str(OS.get_scancode_string(Save.controls["options"]))
-		$"TabContainer/INPUT/MarginContainer/GridContainer/MENU LABEL".text = "MENU: " + str(OS.get_scancode_string(Save.controls["menu"]))
+	$"TabContainer/CONTROLS/MarginContainer/GridContainer/JUMP LABEL".text = "JUMP: " + str(OS.get_scancode_string(Save.controls["jump"][0]))
+	$"TabContainer/CONTROLS/MarginContainer/GridContainer/LEFT LABEL".text = "LEFT: " + str(OS.get_scancode_string(Save.controls["move_left"][0]))
+	$"TabContainer/CONTROLS/MarginContainer/GridContainer/RIGHT LABEL".text = "RIGHT: " + str(OS.get_scancode_string(Save.controls["move_right"][0]))
+	$"TabContainer/CONTROLS/MarginContainer/GridContainer/OPTIONS LABEL".text = "OPTIONS: " + str(OS.get_scancode_string(Save.controls["options"][0]))
+	$"TabContainer/CONTROLS/MarginContainer/GridContainer/MENU LABEL".text = "MENU: " + str(OS.get_scancode_string(Save.controls["menu"][0]))
 
 
 func _on_Exit_pressed():
