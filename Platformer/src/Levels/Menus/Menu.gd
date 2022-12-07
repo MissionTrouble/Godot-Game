@@ -8,10 +8,7 @@ func _on_Start_pressed():
 		get_tree().change_scene_to(Save.level)
 	else:
 		get_tree().change_scene("res://src/Levels/"+Save.game_data['level']+".tscn")
-	
-	Main.time = Save.game_data["time"]
-	Main.deaths = Save.game_data["deaths"]
-	Main.coins = Save.game_data["coins"]
+
 
 func _on_Options_pressed():
 	if(!Main.optionsVisible):

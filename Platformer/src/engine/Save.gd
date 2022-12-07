@@ -9,17 +9,21 @@ var level: PackedScene
 var experimental = true
 var gamekeys = ["deaths","coins","tempcoins","time"]
 var settingskeys = ["timerEnabled","coinEnabled","deathEnabled","autosave"]
-var controlkeys = ["jump","move_left","move_right","options","menu","test"]
-var controls = {}
+var controlkeys = ["jump","move_left","move_right","options","menu"]
+var controls = {"asdf":-1}
 onready var first_scene: PackedScene = preload("res://src/Levels/Tutorial.tscn")
 
 func _ready():
 #	var dir = Directory.new()
-#	dir.remove("user://save_file.save")
+#	dir.remove("user://controls_file.save")
 	load_settings()
 	load_data()
 	load_controls()
 	load_level()
+
+func _process(delta):
+	if settings["autosave"]:
+		save()
 
 func save():
 	save_controls()
@@ -34,8 +38,8 @@ func level_reset():
 	level = preload("res://src/Levels/Tutorial.tscn")
 
 func load_level():
-#	level = preload("res://src/Levels/Tutorial.tscn")
-	level = preload("res://level.tscn")
+	level = preload("res://src/Levels/Tutorial.tscn")
+#	level = preload("res://level.tscn")
 	ResourceSaver.save("res://level.tscn", level)
 
 func save_controls():
@@ -48,10 +52,10 @@ func load_controls():
 	var file = File.new()
 	if not file.file_exists(CONTROLS_FILE):
 		controls = {
-			"jump":KEY_W,
-			"move_left":KEY_A,
-			"move_right":KEY_D,
-			"options":KEY_O,
+			"jump":[KEY_W],
+			"move_left":[KEY_A],
+			"move_right":[KEY_D],
+			"options":[KEY_O],
 			"menu":[KEY_M,KEY_ESCAPE]
 			}
 		save_controls()

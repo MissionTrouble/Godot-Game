@@ -14,6 +14,6 @@ func teleport() -> void:
 	get_tree().change_scene_to(next_scene)
 
 func _on_body_entered(body):
-	Main.coins += Main.tempCoins
-	Main.tempCoins = 0
+	Save.game_data["coins"] += Save.game_data["tempcoins"]
+	Save.game_data["tempcoins"] = 0
 	teleport()

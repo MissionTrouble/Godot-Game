@@ -28,14 +28,9 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	
-#	print(Main.time - stepify(Main.time,1))
-#	if(Main.time - stepify(Main.time,1) <= 0.013 and Main.time - stepify(Main.time,1) >= 0 and stepify(Main.time,1) >0):
-##		print(Main.time - stepify(Main.time,1))
-#		print(str(stepify(Main.time,1))+": right: "+str(INPUT.right))
-#		print(str(stepify(Main.time,1))+": left: "+str(INPUT.left))
-	get_parent().get_node("LevelReq/HUD/HUD").death(Main.deaths)
-	get_parent().get_node("LevelReq/HUD/HUD").coins(Main.coins+Main.tempCoins)
-	get_parent().get_node("LevelReq/HUD/HUD").time(stepify(Main.time,0.1))
+	get_parent().get_node("LevelReq/HUD/HUD").death(Save.game_data["deaths"])
+	get_parent().get_node("LevelReq/HUD/HUD").coins(Save.game_data["coins"]+Save.game_data["tempcoins"])
+	get_parent().get_node("LevelReq/HUD/HUD").time(stepify(Save.game_data["time"],0.1))
 	on_floor()
 	if(INPUT.jump and on_wall()):
 		velocity.y = -wallSpeed
@@ -67,12 +62,12 @@ func _physics_process(delta: float) -> void:
 		velocity = move_and_slide(velocity)
 		
 	if(global_position.y > 2000):
-		Main.deaths += 1
+		Save.game_data["deaths"] += 1
 		get_tree().change_scene("res://src/Levels/"+scene+".tscn")
 
 func _on_EnemyDetector_body_entered(_body):
-	Main.deaths += 1
-	Main.tempCoins = 0
+	Save.game_data["deaths"] += 1
+	Save.game_data["tempoins"] = 0
 	get_tree().change_scene("res://src/Levels/"+scene+".tscn")
 
 func _on_StompDetector_area_entered(area):
@@ -133,10 +128,10 @@ func menu(event):
 		Save.game_data["level"] = packed_scene
 	else:
 		Save.game_data["level"] = scene
-	Save.game_data["deaths"] = Main.deaths
-	Save.game_data["coins"] = Main.coins
-	Save.game_data["tempcoins"] = Main.tempCoins
-	Save.game_data["time"] = Main.time
+#	Save.game_data["deaths"] = Main.deaths
+#	Save.game_data["coins"] = Main.coins
+#	Save.game_data["tempcoins"] = Main.tempCoins
+#	Save.game_data["time"] = Main.time
 	Save.level = packed_scene
 	if(Save.settings["autosave"]):
 		Save.save()

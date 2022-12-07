@@ -13,12 +13,12 @@ func _ready():
 func _input(event):
 	if event is InputEventKey and event.pressed and changing == true:
 		if(event.scancode == KEY_ESCAPE):
-			get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").hide()
+			get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").visible = false
 			changing = false
 		else:
 			Save.controls["options"][0] = event.scancode
 			get_parent().text = "OPTIONS: " + str(event.as_text())
-			get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").hide()
+			get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").visible = false
 			changing = false
 
 
@@ -27,8 +27,9 @@ func _input(event):
 	and event.pressed \
 	and event.button_index == BUTTON_LEFT \
 	and get_rect().has_point(to_local(event.position)) \
-	and get_parent().get_parent().get_parent().get_parent().get_parent().current_tab == 2:
-		get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").show()
+	and get_parent().get_parent().get_parent().get_parent().get_parent().current_tab == 1 \
+	and get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").visible == false:
+		get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").visible = true
 		changing = true
 		
 	if event is InputEventMouse \
