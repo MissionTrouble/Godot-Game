@@ -10,11 +10,11 @@ func update_buttons():
 	$"TabContainer/Gameplay/MarginContainer/GridContainer/COIN BUTTON".pressed = Save.settings["coinEnabled"] 
 	$"TabContainer/Gameplay/MarginContainer/GridContainer/DEATH BUTTON".pressed = Save.settings["deathEnabled"]
 	$TabContainer/SAVE/MarginContainer/GridContainer/AutoSave.pressed = Save.settings["autosave"] 
-	$"TabContainer/CONTROLS/MarginContainer/GridContainer/JUMP LABEL".text = "JUMP: " + str(OS.get_scancode_string(Save.controls["jump"][0]))
-	$"TabContainer/CONTROLS/MarginContainer/GridContainer/LEFT LABEL".text = "LEFT: " + str(OS.get_scancode_string(Save.controls["move_left"][0]))
-	$"TabContainer/CONTROLS/MarginContainer/GridContainer/RIGHT LABEL".text = "RIGHT: " + str(OS.get_scancode_string(Save.controls["move_right"][0]))
-	$"TabContainer/CONTROLS/MarginContainer/GridContainer/OPTIONS LABEL".text = "OPTIONS: " + str(OS.get_scancode_string(Save.controls["options"][0]))
-	$"TabContainer/CONTROLS/MarginContainer/GridContainer/MENU LABEL".text = "MENU: " + str(OS.get_scancode_string(Save.controls["menu"][0]))
+#	$"TabContainer/CONTROLS/MarginContainer/GridContainer/JUMP LABEL".text = "JUMP: " + str(OS.get_scancode_string(Save.controls["jump"][0]))
+#	$"TabContainer/CONTROLS/MarginContainer/GridContainer/LEFT LABEL".text = "LEFT: " + str(OS.get_scancode_string(Save.controls["move_left"][0]))
+#	$"TabContainer/CONTROLS/MarginContainer/GridContainer/RIGHT LABEL".text = "RIGHT: " + str(OS.get_scancode_string(Save.controls["move_right"][0]))
+#	$"TabContainer/CONTROLS/MarginContainer/GridContainer/OPTIONS LABEL".text = "OPTIONS: " + str(OS.get_scancode_string(Save.controls["options"][0]))
+#	$"TabContainer/CONTROLS/MarginContainer/GridContainer/MENU LABEL".text = "MENU: " + str(OS.get_scancode_string(Save.controls["menu"][0]))
 
 
 func _on_Exit_pressed():
@@ -88,4 +88,34 @@ func _on_CONTROLS_RESET_pressed():
 				"menu":[KEY_M,KEY_ESCAPE]
 				}
 	Save.save_controls()
+	$"TabContainer/CONTROLS/MarginContainer/GridContainer/JUMP/JUMP Button/KEY".text == OS.get_scancode_string(Save.controls["jump"][0])
+	$"TabContainer/CONTROLS/MarginContainer/GridContainer/LEFT LABEL/LEFT Button/KEY".text == OS.get_scancode_string(Save.controls["move_left"][0])
+	$"TabContainer/CONTROLS/MarginContainer/GridContainer/RIGHT LABEL/RIGHT Button/KEY".text == OS.get_scancode_string(Save.controls["move_right"][0])
+	$"TabContainer/CONTROLS/MarginContainer/GridContainer/MENU LABEL/MENU Button/KEY".text == OS.get_scancode_string(Save.controls["menu"][0])
+	$"TabContainer/CONTROLS/MarginContainer/GridContainer/OPTIONS LABEL/OPTIONS Button/KEY".text == OS.get_scancode_string(Save.controls["options"][0])
+	$"TabContainer/CONTROLS/MarginContainer/GridContainer/JUMP/JUMP Button".updateArrows()
+	$"TabContainer/CONTROLS/MarginContainer/GridContainer/LEFT LABEL/LEFT Button".updateArrows()
+	$"TabContainer/CONTROLS/MarginContainer/GridContainer/RIGHT LABEL/RIGHT Button".updateArrows()
+	$"TabContainer/CONTROLS/MarginContainer/GridContainer/MENU LABEL/MENU Button".updateArrows()
+	$"TabContainer/CONTROLS/MarginContainer/GridContainer/OPTIONS LABEL/OPTIONS Button".updateArrows()
 	update_buttons()
+
+
+func _on_Tutorial_pressed():
+	Engine.time_scale = Main.timeScale
+	Main.optionsVisible = false
+	get_tree().change_scene_to(load("res://src/Levels/Tutorial.tscn"))
+
+
+func _on_Level_1_pressed():
+	Engine.time_scale = Main.timeScale
+	Main.optionsVisible = false
+	get_tree().change_scene_to(load("res://src/Levels/level1.tscn"))
+
+
+func _on_Level_2_pressed():
+	Engine.time_scale = Main.timeScale
+	Main.optionsVisible = false
+	get_tree().change_scene_to(load("res://src/Levels/level2.tscn"))
+
+

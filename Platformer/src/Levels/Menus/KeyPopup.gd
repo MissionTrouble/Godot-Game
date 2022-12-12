@@ -13,4 +13,3 @@ func _process(delta):
 
 func _on_Button_pressed():
 	visible = false
-	get_parent().get_changing = false

@@ -14,8 +14,8 @@ var controls = {"asdf":-1}
 onready var first_scene: PackedScene = preload("res://src/Levels/Tutorial.tscn")
 
 func _ready():
-#	var dir = Directory.new()
-#	dir.remove("user://controls_file.save")
+	var dir = Directory.new()
+	dir.remove("user://save_file.save")
 	load_settings()
 	load_data()
 	load_controls()
@@ -52,7 +52,7 @@ func load_controls():
 	var file = File.new()
 	if not file.file_exists(CONTROLS_FILE):
 		controls = {
-			"jump":[KEY_W],
+			"jump":[KEY_W,KEY_UP,KEY_SPACE],
 			"move_left":[KEY_A],
 			"move_right":[KEY_D],
 			"options":[KEY_O],
@@ -64,7 +64,7 @@ func load_controls():
 	file.close()
 	if !controls.has_all(controlkeys):
 		controls = {
-			"jump":[KEY_W],
+			"jump":[KEY_W,KEY_UP,KEY_SPACE],
 			"move_left":[KEY_A],
 			"move_right":[KEY_D],
 			"options":[KEY_O],

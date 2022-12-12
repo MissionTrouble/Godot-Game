@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/change.png" type="Texture" id=1]
 [ext_resource path="res://src/Levels/Menus/Options.gd" type="Script" id=2]
@@ -10,6 +10,10 @@
 [ext_resource path="res://src/Levels/Menus/RIGHT Button.gd" type="Script" id=8]
 [ext_resource path="res://src/Levels/Menus/MENU Button.gd" type="Script" id=9]
 [ext_resource path="res://src/Levels/Menus/OPTIONS Button.gd" type="Script" id=10]
+[ext_resource path="res://assets/Untitled.svg" type="Texture" id=11]
+[ext_resource path="res://assets/nordiclight100.tres" type="DynamicFont" id=12]
+[ext_resource path="res://src/Levels/Menus/LeftArrow.gd" type="Script" id=13]
+[ext_resource path="res://src/Levels/Menus/RightArrow.gd" type="Script" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 70
@@ -20,6 +24,7 @@ size = 70
 font_data = ExtResource( 4 )
 
 [node name="Options" type="Popup"]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -41,6 +46,7 @@ custom_fonts/font = SubResource( 1 )
 tab_align = 0
 
 [node name="Gameplay" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -111,7 +117,6 @@ custom_fonts/font = ExtResource( 3 )
 text = "RESET"
 
 [node name="CONTROLS" type="Tabs" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -120,78 +125,283 @@ margin_right = -4.0
 margin_bottom = -4.0
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/CONTROLS"]
+anchor_left = 0.13
+anchor_right = 0.13
 margin_left = 108.0
 margin_top = 5.0
 margin_right = 345.0
 margin_bottom = 53.0
 
 [node name="GridContainer" type="GridContainer" parent="TabContainer/CONTROLS/MarginContainer"]
-margin_right = 237.0
+margin_right = 236.0
 margin_bottom = 256.0
 
-[node name="JUMP LABEL" type="Label" parent="TabContainer/CONTROLS/MarginContainer/GridContainer"]
-margin_right = 195.0
+[node name="JUMP" type="Label" parent="TabContainer/CONTROLS/MarginContainer/GridContainer"]
+margin_right = 173.0
 margin_bottom = 48.0
 custom_fonts/font = ExtResource( 3 )
-text = "FORWARD:"
+text = "JUMP:"
 
-[node name="JUMP Button" type="Sprite" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/JUMP LABEL"]
-position = Vector2( -56, 24 )
+[node name="JUMP Button" type="Sprite" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/JUMP"]
+position = Vector2( -260, 25 )
 scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 1 )
 script = ExtResource( 5 )
 
+[node name="LeftArrow" type="Sprite" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/JUMP/JUMP Button"]
+position = Vector2( 1370, 0 )
+scale = Vector2( 0.285714, 0.285714 )
+texture = ExtResource( 11 )
+flip_h = true
+script = ExtResource( 13 )
+
+[node name="RightArrow" type="Sprite" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/JUMP/JUMP Button"]
+position = Vector2( 1530, 0 )
+scale = Vector2( 0.285714, 0.285714 )
+texture = ExtResource( 11 )
+script = ExtResource( 14 )
+
+[node name="KEY" type="Label" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/JUMP/JUMP Button"]
+anchor_left = 5.5
+anchor_right = 5.558
+margin_top = -60.0
+margin_bottom = 60.0
+custom_fonts/font = ExtResource( 12 )
+text = "W"
+
+[node name="ADD" type="Button" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/JUMP/JUMP Button"]
+margin_left = 152.571
+margin_top = -71.4285
+margin_right = 339.571
+margin_bottom = 54.5715
+custom_fonts/font = ExtResource( 12 )
+text = "ADD"
+
+[node name="DELETE" type="Button" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/JUMP/JUMP Button"]
+anchor_left = 0.9
+anchor_right = 0.9
+margin_left = 136.571
+margin_top = -71.4285
+margin_right = 323.571
+margin_bottom = 54.5715
+custom_fonts/font = ExtResource( 12 )
+text = "DELETE"
+
 [node name="LEFT LABEL" type="Label" parent="TabContainer/CONTROLS/MarginContainer/GridContainer"]
 margin_top = 52.0
-margin_right = 195.0
+margin_right = 173.0
 margin_bottom = 100.0
 custom_fonts/font = ExtResource( 3 )
 text = "LEFT:"
 
 [node name="LEFT Button" type="Sprite" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/LEFT LABEL"]
-position = Vector2( -56, 24 )
+position = Vector2( -260, 25 )
 scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 1 )
 script = ExtResource( 7 )
 
+[node name="LeftArrow" type="Sprite" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/LEFT LABEL/LEFT Button"]
+position = Vector2( 1370, 0 )
+scale = Vector2( 0.285714, 0.285714 )
+texture = ExtResource( 11 )
+flip_h = true
+script = ExtResource( 13 )
+
+[node name="RightArrow" type="Sprite" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/LEFT LABEL/LEFT Button"]
+position = Vector2( 1530, 0 )
+scale = Vector2( 0.285714, 0.285714 )
+texture = ExtResource( 11 )
+script = ExtResource( 14 )
+
+[node name="KEY" type="Label" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/LEFT LABEL/LEFT Button"]
+anchor_left = 2.3
+anchor_right = 2.312
+margin_left = 831.428
+margin_top = -71.4285
+margin_right = 866.428
+margin_bottom = -23.4285
+custom_fonts/font = ExtResource( 12 )
+text = "A"
+
+[node name="ADD" type="Button" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/LEFT LABEL/LEFT Button"]
+margin_left = 152.571
+margin_top = -71.4285
+margin_right = 339.571
+margin_bottom = 54.5715
+custom_fonts/font = ExtResource( 12 )
+text = "ADD"
+
+[node name="DELETE" type="Button" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/LEFT LABEL/LEFT Button"]
+anchor_left = 0.9
+anchor_right = 0.9
+margin_left = 136.571
+margin_top = -71.4285
+margin_right = 323.571
+margin_bottom = 54.5715
+custom_fonts/font = ExtResource( 12 )
+text = "DELETE"
+
 [node name="RIGHT LABEL" type="Label" parent="TabContainer/CONTROLS/MarginContainer/GridContainer"]
 margin_top = 104.0
-margin_right = 195.0
+margin_right = 173.0
 margin_bottom = 152.0
 custom_fonts/font = ExtResource( 3 )
 text = "RIGHT:"
 
 [node name="RIGHT Button" type="Sprite" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/RIGHT LABEL"]
-position = Vector2( -55, 22 )
+position = Vector2( -260, 25 )
 scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 1 )
 script = ExtResource( 8 )
 
+[node name="LeftArrow" type="Sprite" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/RIGHT LABEL/RIGHT Button"]
+position = Vector2( 1370, 0 )
+scale = Vector2( 0.285714, 0.285714 )
+texture = ExtResource( 11 )
+flip_h = true
+script = ExtResource( 13 )
+
+[node name="RightArrow" type="Sprite" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/RIGHT LABEL/RIGHT Button"]
+position = Vector2( 1530, 0 )
+scale = Vector2( 0.285714, 0.285714 )
+texture = ExtResource( 11 )
+script = ExtResource( 14 )
+
+[node name="KEY" type="Label" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/RIGHT LABEL/RIGHT Button"]
+anchor_left = 2.3
+anchor_right = 2.3
+margin_left = 828.571
+margin_top = -71.4286
+margin_right = 863.571
+margin_bottom = -23.4286
+custom_fonts/font = ExtResource( 12 )
+text = "D"
+
+[node name="ADD" type="Button" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/RIGHT LABEL/RIGHT Button"]
+margin_left = 152.571
+margin_top = -71.4285
+margin_right = 339.571
+margin_bottom = 54.5715
+custom_fonts/font = ExtResource( 12 )
+text = "ADD"
+
+[node name="DELETE" type="Button" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/RIGHT LABEL/RIGHT Button"]
+anchor_left = 0.9
+anchor_right = 0.9
+margin_left = 136.571
+margin_top = -71.4285
+margin_right = 323.571
+margin_bottom = 54.5715
+custom_fonts/font = ExtResource( 12 )
+text = "DELETE"
+
 [node name="MENU LABEL" type="Label" parent="TabContainer/CONTROLS/MarginContainer/GridContainer"]
 margin_top = 156.0
-margin_right = 195.0
+margin_right = 173.0
 margin_bottom = 204.0
 custom_fonts/font = ExtResource( 3 )
 text = "MENU:"
 
 [node name="MENU Button" type="Sprite" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/MENU LABEL"]
-position = Vector2( -55, 22 )
+position = Vector2( -260, 25 )
 scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 1 )
 script = ExtResource( 9 )
 
+[node name="LeftArrow" type="Sprite" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/MENU LABEL/MENU Button"]
+position = Vector2( 1370, 0 )
+scale = Vector2( 0.285714, 0.285714 )
+texture = ExtResource( 11 )
+flip_h = true
+script = ExtResource( 13 )
+
+[node name="RightArrow" type="Sprite" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/MENU LABEL/MENU Button"]
+position = Vector2( 1530, 0 )
+scale = Vector2( 0.285714, 0.285714 )
+texture = ExtResource( 11 )
+script = ExtResource( 14 )
+
+[node name="KEY" type="Label" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/MENU LABEL/MENU Button"]
+anchor_left = 2.3
+anchor_right = 2.3
+margin_left = 828.571
+margin_top = -71.4286
+margin_right = 863.571
+margin_bottom = -23.4286
+custom_fonts/font = ExtResource( 12 )
+text = "M"
+
+[node name="ADD" type="Button" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/MENU LABEL/MENU Button"]
+margin_left = 152.571
+margin_top = -71.4285
+margin_right = 339.571
+margin_bottom = 54.5715
+custom_fonts/font = ExtResource( 12 )
+text = "ADD"
+
+[node name="DELETE" type="Button" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/MENU LABEL/MENU Button"]
+anchor_left = 0.9
+anchor_right = 0.9
+margin_left = 136.571
+margin_top = -71.4285
+margin_right = 323.571
+margin_bottom = 54.5715
+custom_fonts/font = ExtResource( 12 )
+text = "DELETE"
+
 [node name="OPTIONS LABEL" type="Label" parent="TabContainer/CONTROLS/MarginContainer/GridContainer"]
 margin_top = 208.0
-margin_right = 195.0
+margin_right = 173.0
 margin_bottom = 256.0
 custom_fonts/font = ExtResource( 3 )
 text = "OPTIONS:"
 
 [node name="OPTIONS Button" type="Sprite" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/OPTIONS LABEL"]
-position = Vector2( -55, 22 )
+position = Vector2( -260, 25 )
 scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 1 )
 script = ExtResource( 10 )
+
+[node name="LeftArrow" type="Sprite" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/OPTIONS LABEL/OPTIONS Button"]
+position = Vector2( 1370, 0 )
+scale = Vector2( 0.285714, 0.285714 )
+texture = ExtResource( 11 )
+flip_h = true
+script = ExtResource( 13 )
+
+[node name="RightArrow" type="Sprite" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/OPTIONS LABEL/OPTIONS Button"]
+position = Vector2( 1530, 0 )
+scale = Vector2( 0.285714, 0.285714 )
+texture = ExtResource( 11 )
+script = ExtResource( 14 )
+
+[node name="KEY" type="Label" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/OPTIONS LABEL/OPTIONS Button"]
+anchor_left = 2.3
+anchor_right = 2.3
+margin_left = 828.571
+margin_top = -71.4286
+margin_right = 863.571
+margin_bottom = -23.4286
+custom_fonts/font = ExtResource( 12 )
+text = "O"
+
+[node name="ADD" type="Button" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/OPTIONS LABEL/OPTIONS Button"]
+margin_left = 152.571
+margin_top = -71.4285
+margin_right = 339.571
+margin_bottom = 54.5715
+custom_fonts/font = ExtResource( 12 )
+text = "ADD"
+
+[node name="DELETE" type="Button" parent="TabContainer/CONTROLS/MarginContainer/GridContainer/OPTIONS LABEL/OPTIONS Button"]
+anchor_left = 0.9
+anchor_right = 0.9
+margin_left = 136.571
+margin_top = -71.4285
+margin_right = 323.571
+margin_bottom = 54.5715
+custom_fonts/font = ExtResource( 12 )
+text = "DELETE"
 
 [node name="CONTROLS RESET" type="Button" parent="TabContainer/CONTROLS"]
 margin_left = 12.0
@@ -239,6 +449,39 @@ margin_bottom = 172.0
 custom_fonts/font = ExtResource( 3 )
 text = "AutoSave "
 
+[node name="LEVELS" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 103.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/LEVELS"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Tutorial" type="Button" parent="TabContainer/LEVELS/GridContainer"]
+margin_right = 186.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 3 )
+text = "TUTORIAL"
+
+[node name="Level 1" type="Button" parent="TabContainer/LEVELS/GridContainer"]
+margin_top = 58.0
+margin_right = 186.0
+margin_bottom = 112.0
+custom_fonts/font = ExtResource( 3 )
+text = "LEVEL 1"
+
+[node name="Level 2" type="Button" parent="TabContainer/LEVELS/GridContainer"]
+margin_top = 116.0
+margin_right = 186.0
+margin_bottom = 170.0
+custom_fonts/font = ExtResource( 3 )
+text = "LEVEL 2"
+
 [node name="EXIT" type="Button" parent="."]
 margin_left = 1436.0
 margin_top = 5.0
@@ -248,18 +491,35 @@ custom_fonts/font = SubResource( 2 )
 text = "EXIT"
 
 [node name="KeyPopup" parent="." instance=ExtResource( 6 )]
-margin_left = 160.0
-margin_top = 140.0
-margin_right = 159.998
-margin_bottom = 140.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -799.999
+margin_top = -400.0
+margin_right = 799.999
+margin_bottom = 400.0
 offset = Vector2( 0, 0 )
 
 [connection signal="toggled" from="TabContainer/Gameplay/MarginContainer/GridContainer/TIMER BUTTON" to="." method="_on_Timer_toggled"]
 [connection signal="toggled" from="TabContainer/Gameplay/MarginContainer/GridContainer/COIN BUTTON" to="." method="_on_Coin_toggled"]
 [connection signal="toggled" from="TabContainer/Gameplay/MarginContainer/GridContainer/DEATH BUTTON" to="." method="_on_Death_toggled"]
 [connection signal="pressed" from="TabContainer/Gameplay/MarginContainer/GridContainer/RESET" to="." method="_on_RESET_pressed"]
+[connection signal="pressed" from="TabContainer/CONTROLS/MarginContainer/GridContainer/JUMP/JUMP Button/ADD" to="TabContainer/CONTROLS/MarginContainer/GridContainer/JUMP/JUMP Button" method="_on_ADD_pressed"]
+[connection signal="pressed" from="TabContainer/CONTROLS/MarginContainer/GridContainer/JUMP/JUMP Button/DELETE" to="TabContainer/CONTROLS/MarginContainer/GridContainer/JUMP/JUMP Button" method="_on_DELETE_pressed"]
+[connection signal="pressed" from="TabContainer/CONTROLS/MarginContainer/GridContainer/LEFT LABEL/LEFT Button/ADD" to="TabContainer/CONTROLS/MarginContainer/GridContainer/LEFT LABEL/LEFT Button" method="_on_ADD_pressed"]
+[connection signal="pressed" from="TabContainer/CONTROLS/MarginContainer/GridContainer/LEFT LABEL/LEFT Button/DELETE" to="TabContainer/CONTROLS/MarginContainer/GridContainer/LEFT LABEL/LEFT Button" method="_on_DELETE_pressed"]
+[connection signal="pressed" from="TabContainer/CONTROLS/MarginContainer/GridContainer/RIGHT LABEL/RIGHT Button/ADD" to="TabContainer/CONTROLS/MarginContainer/GridContainer/RIGHT LABEL/RIGHT Button" method="_on_ADD_pressed"]
+[connection signal="pressed" from="TabContainer/CONTROLS/MarginContainer/GridContainer/RIGHT LABEL/RIGHT Button/DELETE" to="TabContainer/CONTROLS/MarginContainer/GridContainer/RIGHT LABEL/RIGHT Button" method="_on_DELETE_pressed"]
+[connection signal="pressed" from="TabContainer/CONTROLS/MarginContainer/GridContainer/MENU LABEL/MENU Button/ADD" to="TabContainer/CONTROLS/MarginContainer/GridContainer/MENU LABEL/MENU Button" method="_on_ADD_pressed"]
+[connection signal="pressed" from="TabContainer/CONTROLS/MarginContainer/GridContainer/MENU LABEL/MENU Button/DELETE" to="TabContainer/CONTROLS/MarginContainer/GridContainer/MENU LABEL/MENU Button" method="_on_DELETE_pressed"]
+[connection signal="pressed" from="TabContainer/CONTROLS/MarginContainer/GridContainer/OPTIONS LABEL/OPTIONS Button/ADD" to="TabContainer/CONTROLS/MarginContainer/GridContainer/OPTIONS LABEL/OPTIONS Button" method="_on_ADD_pressed"]
+[connection signal="pressed" from="TabContainer/CONTROLS/MarginContainer/GridContainer/OPTIONS LABEL/OPTIONS Button/DELETE" to="TabContainer/CONTROLS/MarginContainer/GridContainer/OPTIONS LABEL/OPTIONS Button" method="_on_DELETE_pressed"]
 [connection signal="pressed" from="TabContainer/CONTROLS/CONTROLS RESET" to="." method="_on_CONTROLS_RESET_pressed"]
 [connection signal="pressed" from="TabContainer/SAVE/MarginContainer/GridContainer/Save" to="." method="_on_Save_pressed"]
 [connection signal="pressed" from="TabContainer/SAVE/MarginContainer/GridContainer/DeleteSave" to="." method="_on_DeleteSave_pressed"]
 [connection signal="toggled" from="TabContainer/SAVE/MarginContainer/GridContainer/AutoSave" to="." method="_on_AutoSave_toggled"]
+[connection signal="pressed" from="TabContainer/LEVELS/GridContainer/Tutorial" to="." method="_on_Tutorial_pressed"]
+[connection signal="pressed" from="TabContainer/LEVELS/GridContainer/Level 1" to="." method="_on_Level_1_pressed"]
+[connection signal="pressed" from="TabContainer/LEVELS/GridContainer/Level 2" to="." method="_on_Level_2_pressed"]
 [connection signal="pressed" from="EXIT" to="." method="_on_EXIT_pressed"]
