@@ -115,7 +115,7 @@ func load_settings():
 	file.open(SETTINGS_FILE, file.READ)
 	settings = file.get_var()
 	file.close()
-	if !settings.has_all(settingskeys):
+	if not settings or !settings.has_all(settingskeys):
 		settings = {
 			"timerEnabled":false,
 			"coinEnabled":true,

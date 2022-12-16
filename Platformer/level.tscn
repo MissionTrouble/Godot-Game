@@ -1,27 +1,31 @@
-[ext_resource path="res://src/Levels/Signs/DoubleJump.gd" type="Script" id=9]
-[ext_resource path="res://src/engine/LevelReq.tscn" type="PackedScene" id=10]
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://src/Levels/Signs/DoubleJump.gd" type="Script" id=1]
+[ext_resource path="res://src/Levels/Signs/Jump.gd" type="Script" id=2]
+[ext_resource path="res://src/Levels/level1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/engine/LevelReq.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Levels/Signs/Portal.gd" type="Script" id=5]
+[ext_resource path="res://src/engine/camera.gd" type="Script" id=6]
+[ext_resource path="res://src/Levels/Signs/Enemy.gd" type="Script" id=7]
+[ext_resource path="res://src/Levels/Signs/WallClimb.gd" type="Script" id=8]
+[ext_resource path="res://src/Levels/Portal.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/actors/player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/tileset.tres" type="TileSet" id=11]
 [ext_resource path="res://src/actors/enemy.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/Levels/Signs/WallClimb.gd" type="Script" id=14]
-[ext_resource path="res://src/actors/player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/Levels/Portal.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/tileset.tres" type="TileSet" id=9]
-[ext_resource path="res://src/Levels/Coin.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/actors/enemy.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/Levels/Signs/DoubleJump.gd" type="Script" id=12]
-[ext_resource path="res://src/Levels/Signs/Death.gd" type="Script" id=13]
-[ext_resource path="res://src/Levels/level1.tscn" type="PackedScene" id=14]
-[ext_resource path="res://src/Levels/Signs/Enemy.gd" type="Script" id=15]
-[ext_resource path="res://src/Levels/Signs/Portal.gd" type="Script" id=16]
-[ext_resource path="res://src/Levels/Signs/Jump.gd" type="Script" id=17]
+[ext_resource path="res://src/Levels/Signs/Sign.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/Levels/Coin.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/Levels/Tutorial.gd" type="Script" id=15]
+[ext_resource path="res://src/Levels/Signs/Coin.gd" type="Script" id=16]
+[ext_resource path="res://src/Levels/Signs/Death.gd" type="Script" id=17]
 
 [node name="Tutorial" type="Node2D"]
-script = ExtResource( 5 )
+script = ExtResource( 15 )
 
-[node name="LevelReq" parent="." instance=ExtResource( 2 )]
+[node name="LevelReq" parent="." instance=ExtResource( 4 )]
 
 [node name="Tutorial" type="TileMap" parent="."]
 z_index = -5
-tile_set = ExtResource( 9 )
+tile_set = ExtResource( 11 )
 cell_size = Vector2( 80, 80 )
 collision_layer = 8
 collision_mask = 0
@@ -30,48 +34,48 @@ tile_data = PoolIntArray( -262106, 0, 0, -196570, 0, 0, -131034, 0, 0, -65498, 0
 
 [node name="Signs" type="Node" parent="."]
 
-[node name="Sign" parent="Signs" instance=ExtResource( 6 )]
+[node name="Sign" parent="Signs" instance=ExtResource( 13 )]
 position = Vector2( 432, 944 )
 z_index = -1
 
-[node name="Jump" parent="Signs" instance=ExtResource( 6 )]
+[node name="Jump" parent="Signs" instance=ExtResource( 13 )]
 position = Vector2( 1160, 944 )
 z_index = -1
-script = ExtResource( 17 )
+script = ExtResource( 2 )
 
-[node name="DoubleJump" parent="Signs" instance=ExtResource( 6 )]
+[node name="DoubleJump" parent="Signs" instance=ExtResource( 13 )]
 position = Vector2( 1952, 944 )
 z_index = -1
-script = ExtResource( 12 )
+script = ExtResource( 1 )
 
-[node name="WallClimb" parent="Signs" instance=ExtResource( 6 )]
+[node name="WallClimb" parent="Signs" instance=ExtResource( 13 )]
 position = Vector2( 2848, 944 )
 z_index = -1
-script = ExtResource( 4 )
+script = ExtResource( 8 )
 
-[node name="Portal" parent="Signs" instance=ExtResource( 6 )]
+[node name="Portal" parent="Signs" instance=ExtResource( 13 )]
 position = Vector2( 1120, -96 )
+z_index = -1
+script = ExtResource( 5 )
+
+[node name="Enemy" parent="Signs" instance=ExtResource( 13 )]
+position = Vector2( 2432, -96 )
+z_index = -1
+script = ExtResource( 7 )
+
+[node name="Coin" parent="Signs" instance=ExtResource( 13 )]
+position = Vector2( 1648, -96 )
 z_index = -1
 script = ExtResource( 16 )
 
-[node name="Enemy" parent="Signs" instance=ExtResource( 6 )]
-position = Vector2( 2432, -96 )
-z_index = -1
-script = ExtResource( 15 )
-
-[node name="Coin" parent="Signs" instance=ExtResource( 6 )]
-position = Vector2( 1648, -96 )
-z_index = -1
-script = ExtResource( 3 )
-
-[node name="Death" parent="Signs" instance=ExtResource( 6 )]
+[node name="Death" parent="Signs" instance=ExtResource( 13 )]
 position = Vector2( 224, -96 )
 z_index = -1
-script = ExtResource( 13 )
+script = ExtResource( 17 )
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="enemy" parent="Enemies" instance=ExtResource( 11 )]
+[node name="enemy" parent="Enemies" instance=ExtResource( 12 )]
 position = Vector2( 1880, 74 )
 z_index = -1
 collision_layer = 2
@@ -82,16 +86,16 @@ wallSpeed = 100
 
 [node name="Coins" type="Node" parent="."]
 
-[node name="Coin" parent="Coins" instance=ExtResource( 10 )]
+[node name="Coin" parent="Coins" instance=ExtResource( 14 )]
 position = Vector2( 1384, -136 )
 z_index = -2
 
-[node name="Portal" parent="." instance=ExtResource( 8 )]
+[node name="Portal" parent="." instance=ExtResource( 9 )]
 position = Vector2( 872, -128 )
 z_index = -1
-next_scene = ExtResource( 14 )
+next_scene = ExtResource( 3 )
 
-[node name="player" parent="." instance=ExtResource( 7 )]
+[node name="player" parent="." instance=ExtResource( 10 )]
 position = Vector2( 270, 980 )
 
 [node name="camera" type="Camera2D" parent="."]
@@ -102,4 +106,4 @@ limit_bottom = 1080
 limit_smoothed = true
 smoothing_enabled = true
 smoothing_speed = 3.0
-script = ExtResource( 1 )
+script = ExtResource( 6 )

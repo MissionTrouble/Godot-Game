@@ -38,10 +38,11 @@ func _process(delta):
 		changing = false
 func _input(event):
 	if event is InputEventKey and event.pressed and changing == true:
-		if(event.scancode == KEY_ESCAPE):
-			get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").visible = false
-			changing = false
-		elif add:
+#		if(event.scancode == KEY_ESCAPE):
+#			get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").visible = false
+#			changing = false
+#		el
+		if add:
 			Save.controls["options"].resize(Save.controls["options"].size()+1)
 			index = Save.controls["options"].size()-1
 			Save.controls["options"][Save.controls["options"].size()-1] = event.scancode

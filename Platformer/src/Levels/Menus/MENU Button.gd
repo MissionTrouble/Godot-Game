@@ -37,10 +37,11 @@ func updateArrows():
 
 func _input(event):
 	if event is InputEventKey and event.pressed and changing == true:
-		if(event.scancode == KEY_ESCAPE):
-			get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").visible = false
-			changing = false
-		elif add:
+#		if(event.scancode == KEY_ESCAPE):
+#			get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_node("KeyPopup").visible = false
+#			changing = false
+#		el
+		if add:
 			Save.controls["menu"].resize(Save.controls["menu"].size()+1)
 			index = Save.controls["menu"].size()-1
 			Save.controls["menu"][Save.controls["menu"].size()-1] = event.scancode
